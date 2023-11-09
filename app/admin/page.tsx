@@ -1,30 +1,10 @@
-// import ProductsList from "@/components/ProductsList";
-// import { createClient } from "@/utils/supabase/server";
-// import { cookies } from "next/headers";
-
-// export default async function Products() {
-//   const cookieStore = cookies()
-
-//   const supabase = createClient(cookieStore)
-
-//   // const {
-//   //   data: { user },
-//   // } = await supabase.auth.getUser()
-//   // console.log('🚀 ~ file: page.tsx:15 ~ user:', user)
-
-//   return (
-//     <ProductsList />
-//   );
-// }
-
-
-import DeployButton from '../components/DeployButton'
-import AuthButton from '../components/AuthButton'
 import { createClient } from '@/utils/supabase/server'
 import ConnectSupabaseSteps from '@/components/ConnectSupabaseSteps'
 import SignUpUserSteps from '@/components/SignUpUserSteps'
 import Header from '@/components/Header'
 import { cookies } from 'next/headers'
+import DeployButton from '@/components/DeployButton'
+import AuthButton from '@/components/AuthButton'
 
 export default async function Index() {
   const cookieStore = cookies()
@@ -41,6 +21,7 @@ export default async function Index() {
   }
 
   const isSupabaseConnected = canInitSupabaseClient()
+  console.log('🚀 ~ file: page.tsx:24 ~ isSupabaseConnected:', isSupabaseConnected)
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">

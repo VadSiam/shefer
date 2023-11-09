@@ -1,5 +1,5 @@
 import { GeistSans } from 'geist/font'
-import { QueryClientProviderWrapper } from '@/utils/context/product.context'
+import { QueryClientProviderWrapper } from '@/utils/context/main.context'
 import { useIsFetching } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import Loader from '@/components/Loader'
