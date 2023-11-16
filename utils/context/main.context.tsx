@@ -1,26 +1,31 @@
 'use client'
 
-import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect, useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createClient } from '../supabase/client';
 import { convertItems, displayError } from '../helpers';
 import { useRouter } from 'next/navigation';
+import { Session, User } from '@supabase/supabase-js';
+import dynamic from 'next/dynamic'
 
+type Theme = 'light' | 'dark';
 interface ProductsState {
   products: any[]; // Replace 'any' with the actual type of your products
   isLoading: boolean;
-  sessionData: any;
-  userData: any;
+  sessionData: Session | null;
+  userData: User | null;
+  resetUserData: () => void;
+  afterLogin: () => void;
 }
 
 // Create the context with a default value
 const ProductsContext = createContext<ProductsState | undefined>(undefined);
 
 // Hook to use the context
-export const useProductsContext = () => {
+export const useMainContext = () => {
   const context = useContext(ProductsContext);
   if (!context) {
-    throw new Error('useProductsContext must be used within a ProductsProvider');
+    throw new Error('useMainContext must be used within a ProductsProvider');
   }
   return context;
 };
@@ -28,11 +33,18 @@ export const useProductsContext = () => {
 // Define the provider component
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const supabase = createClient();
+
   const router = useRouter();
 
   const [products, setProducts] = React.useState<any[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<User | null>(null);
+
+  const resetUserData = useCallback(async () => {
+    await supabase.auth.signOut()
+    setUserData(null)
+    router.push('/login')
+  }, [setUserData, supabase]);
 
   const userQuery = useQuery({
     queryKey: ['user'],
@@ -41,13 +53,15 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
         const { data: { user }, error } = await supabase.auth.getUser();
 
         if (!user) {
-          router.push('/login')
+          // router.push('/login')
+          setUserData(null);
+          return null;
         }
 
         setUserData(user);
         return user;
       } catch (error: any) {
-        displayError({ message: 'An unexpected error occurred while fetching the session.' });
+        displayError({ message: 'An unexpected error occurred while fetching the user data.' });
         throw error;
       }
     },
@@ -60,7 +74,6 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     queryFn: async () => {
       try {
         const { data, error } = await supabase.auth.getSession();
-        console.log('🚀 ~ file: main.context.tsx:37 ~ data:', data)
 
         if (error) {
           displayError(error);
@@ -100,6 +113,13 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     enabled: false,
   });
 
+  const afterLogin = useCallback(() => {
+    sessionQuery.refetch();
+    userQuery.refetch();
+    router.push('/');
+  }, [sessionQuery, userQuery, router]);
+
+
   useEffect(() => {
     productsQuery.refetch();
     // sessionQuery.refetch();
@@ -112,6 +132,8 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     isLoading: productsQuery.isLoading || sessionQuery.isLoading || userQuery.isLoading,
     sessionData,
     userData,
+    resetUserData,
+    afterLogin,
   };
 
   return (
@@ -121,15 +143,19 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+const ThemeProvider = dynamic(() => import('./ThemeProvider'), { ssr: false })
+
 // Set up the QueryClientProvider in a separate component
 export const QueryClientProviderWrapper = ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ProductsProvider>
-        {children}
-      </ProductsProvider>
-    </QueryClientProvider>
+      <ThemeProvider forcedTheme={undefined} attribute="class">
+        <ProductsProvider>
+          {children}
+        </ProductsProvider>
+      </ThemeProvider >
+    </QueryClientProvider >
   );
 };

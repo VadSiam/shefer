@@ -1,20 +1,25 @@
+'use client'
 import Link from 'next/link'
-import { headers, cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
+// import { headers, cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/client'
 import { redirect } from 'next/navigation'
+import { useMainContext } from '@/utils/context/main.context'
 
-export default function Login({
+const Login = ({
   searchParams,
 }: {
   searchParams: { message: string }
-}) {
+}) => {
+  const { afterLogin } = useMainContext();
+  
   const signIn = async (formData: FormData) => {
-    'use server'
+
+    // 'use server'
 
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    // const cookieStore = cookies()
+    const supabase = createClient()
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -25,23 +30,23 @@ export default function Login({
       return redirect('/login?message=Could not authenticate user')
     }
 
-    return redirect('/')
+    afterLogin()
   }
 
   const signUp = async (formData: FormData) => {
-    'use server'
+    // 'use server'
 
-    const origin = headers().get('origin')
+    // const origin = headers().get('origin')
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    // const cookieStore = cookies()
+    const supabase = createClient()
 
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `${origin}/auth/callback`,
+        // emailRedirectTo: `${origin}/auth/callback`,
       },
     })
 
@@ -84,6 +89,7 @@ export default function Login({
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          id="email"
           name="email"
           placeholder="you@example.com"
           required
@@ -94,6 +100,7 @@ export default function Login({
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
+          id="password"
           name="password"
           placeholder="••••••••"
           required
@@ -116,3 +123,5 @@ export default function Login({
     </div>
   )
 }
+
+export default Login

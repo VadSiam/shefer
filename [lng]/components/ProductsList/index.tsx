@@ -1,9 +1,8 @@
 'use client'
-import { useProductsContext } from "@/utils/context/main.context";
+import { useMainContext } from "@/utils/context/main.context";
 
 const ProductsList = () => {
-  const { products, userData } = useProductsContext();
-  console.log('🚀 ~ file: index.tsx:6 ~ products:', products, userData)
+  const { products, userData } = useMainContext();
   return (
     <div>
       {products?.map((product) => (

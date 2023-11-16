@@ -1,10 +1,10 @@
 import { createClient } from '@/utils/supabase/server'
-import ConnectSupabaseSteps from '@/components/ConnectSupabaseSteps'
-import SignUpUserSteps from '@/components/SignUpUserSteps'
-import Header from '@/components/Header'
+import ConnectSupabaseSteps from '@/[lng]/components/ConnectSupabaseSteps'
+import SignUpUserSteps from '@/[lng]/components/SignUpUserSteps'
+import Header from '@/components/HeaderOLD'
 import { cookies } from 'next/headers'
-import DeployButton from '@/components/DeployButton'
-import AuthButton from '@/components/AuthButton'
+import DeployButton from '@/[lng]/components/DeployButton'
+import AuthButton from '@/[lng]/components/AuthButton'
 
 export default async function Index() {
   const cookieStore = cookies()
@@ -28,7 +28,7 @@ export default async function Index() {
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
           <DeployButton />
-          {isSupabaseConnected && <AuthButton />}
+          {/* {isSupabaseConnected && <AuthButton />} */}
         </div>
       </nav>
 
