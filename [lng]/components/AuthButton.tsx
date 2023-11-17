@@ -4,13 +4,14 @@ import { User } from '@supabase/supabase-js'
 import { useMainContext } from '@/utils/context/main.context'
 import StyledButton from './ThemesComponents/StyledButton'
 import StyledLink from './ThemesComponents/StyledLink'
+import { IPageElementProps } from '@/app/[lng]/page'
 
 interface IAuth {
   userData: User | null
   resetUserData: () => void
 }
 
-const AuthButton: React.FC = () => {
+const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
   const { resetUserData, userData } = useMainContext();
 
   const signOut = () => {
@@ -19,7 +20,6 @@ const AuthButton: React.FC = () => {
 
   return userData ? (
     <div className="flex items-center gap-4">
-      Hello, {userData.email}!
       <form action={signOut}>
         <StyledButton
           text='Logout'
@@ -30,7 +30,7 @@ const AuthButton: React.FC = () => {
   ) : (
     <StyledLink
       text='Login'
-      href='/login'
+      href={`/${lng}/login`}
     />
   )
 }

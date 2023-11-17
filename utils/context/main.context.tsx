@@ -53,7 +53,6 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
         const { data: { user }, error } = await supabase.auth.getUser();
 
         if (!user) {
-          // router.push('/login')
           setUserData(null);
           return null;
         }

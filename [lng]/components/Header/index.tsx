@@ -10,10 +10,18 @@ import { TFunction } from "i18next/typescript/t";
 import { useTranslation } from "@/app/i18n/client";
 import LangSwitcher from "../LangSwitcher";
 
+const activePassiveNameStyles = (pathname: string, name: string): string => {
+  return pathname.includes(name)
+    ? ' text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500'
+    : ' text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+}
+
+
 const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
+  console.log('🚀 ~ file: index.tsx:17 ~ pathname:', pathname)
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
@@ -33,7 +41,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
           <LogoImage />
         </a>
         <div className="flex md:order-2">
-          <AuthButton />
+          <AuthButton lng={lng} />
           <button
             onClick={toggleMenu}
             data-collapse-toggle="navbar-sticky"
@@ -61,22 +69,35 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
               </svg>
             </li>
             <li className="flex flex-col justify-center">
-              <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">
+              <a
+                href={`/${lng}/catalog`}
+                className={`block py-2 pl-3 pr-4 ${activePassiveNameStyles(pathname, 'catalog')}`}
+                aria-current="page"
+              >
                 {t('Каталог')}
               </a>
             </li>
             <li className="flex flex-col justify-center">
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+              <a
+                href={`/${lng}/about`}
+                className={`block py-2 pl-3 pr-4 ${activePassiveNameStyles(pathname, 'about')}`}
+              >
                 {t('О нас')}
               </a>
             </li>
             <li className="flex flex-col justify-center">
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+              <a
+                href={`/${lng}/contacts`}
+                className={`block py-2 pl-3 pr-4 ${activePassiveNameStyles(pathname, 'contacts')}`}
+              >
                 {t('Контакты')}
               </a>
             </li>
             <li className="flex flex-col justify-center">
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+              <a
+                href={`/${lng}/account`}
+                className={`block py-2 pl-3 pr-4 ${activePassiveNameStyles(pathname, 'account')}`}
+              >
                 {t('Аккаунт')}
               </a>
             </li>

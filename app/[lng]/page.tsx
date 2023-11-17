@@ -1,22 +1,14 @@
 import ProductsList from "@/[lng]/components/ProductsList";
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
 
-// import Link from 'next/link'
+export interface IPageElementProps {
+  lng: string
+}
 
-// export default function Page({ params: { lng } }) {
-//   console.log('🚀 ~ file: page.tsx:8 ~ lng:', lng)
-//   return (
-//     <>
-//       <h1>Hi there!</h1>
-//       <Link href={`/${lng}/second-page`}>
-//         second page
-//       </Link>
-//     </>
-//   )
-// }
-export default async function MainPage({ params: { lng } }: { params: { lng: string } }) {
-// console.log('🚀 ~ file: page.tsx:6 ~ lng:', lng)
+export interface IPageProps {
+  params: IPageElementProps
+}
+
+export default async function MainPage({ params: { lng } }: IPageProps) {
 
   return (
     <ProductsList />
