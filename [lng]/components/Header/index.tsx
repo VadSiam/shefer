@@ -21,7 +21,6 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
-  console.log('🚀 ~ file: index.tsx:24 ~ pathname:', pathname)
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 

@@ -8,7 +8,7 @@ import { useMainContext } from '@/utils/context/main.context'
 const Login = ({
   searchParams,
 }: {
-  searchParams: { message: string }
+  searchParams?: { message?: string }
 }) => {
   const { afterLogin } = useMainContext();
   
