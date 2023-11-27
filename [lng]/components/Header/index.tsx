@@ -4,11 +4,10 @@ import AuthButton from "../AuthButton";
 import ThemeSwitcher from "../ThemeSwitcher";
 import LogoImage from "./LogoImage";
 import { useState } from "react";
-// import LangSwitcher from "../LangSwitcher";
-// import { useTranslation } from "@/app/i18n";
-import { TFunction } from "i18next/typescript/t";
 import { useTranslation } from "@/app/i18n/client";
 import LangSwitcher from "../LangSwitcher";
+import { useMainContext } from "@/utils/context/main.context";
+import AdminButton from "../AdminButton";
 
 const activePassiveNameStyles = (pathname: string, name: string): string => {
   return pathname.includes(name)
@@ -21,6 +20,8 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
+  const { userData } = useMainContext();
+
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
@@ -40,15 +41,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
           <LogoImage />
         </a>
         <div className="flex md:order-2">
-          <a
-            href={`/${lng}/admin`}
-            className='flex items-center mr-3'
-            aria-current="page"
-          >
-            <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-              {t('Админка')}
-            </button>
-          </a>
+          <AdminButton lng={lng} />
           <AuthButton lng={lng} />
           <button
             onClick={toggleMenu}

@@ -7,6 +7,8 @@ import Loader from '@/[lng]/components/Loader'
 import Header from '@/[lng]/components/Header'
 import { languages } from '../i18n/settings'
 import Footer from '@/[lng]/components/Footer'
+import { Suspense } from 'react'
+import LoaderBody from '@/[lng]/components/Loader/LoaderBody'
 
 
 export async function generateStaticParams() {
@@ -30,9 +32,9 @@ export default function RootLayout({
   }
 }: {
   children: React.ReactNode,
-    params: {
-      lng: string
-    }
+  params: {
+    lng: string
+  }
 }) {
 
   return (
@@ -44,7 +46,9 @@ export default function RootLayout({
             <Loader />
             <Toaster position="top-center" reverseOrder={false} />
             <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20 md:mt-20">
-              {children}
+              <Suspense fallback={<LoaderBody />}>
+                {children}
+              </Suspense>
             </div>
             <Footer lng={lng} />
           </QueryClientProviderWrapper>

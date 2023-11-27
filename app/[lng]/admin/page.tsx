@@ -5,7 +5,6 @@ import { IPageProps } from "../page";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Admin, AppBar, Layout, Resource, TitlePortal } from 'react-admin';
-import { SetPasswordPage, ForgotPasswordPage } from 'ra-supabase';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { dataProvider } from "@/utils/context/dataProvider";
 import { authProvider } from "@/utils/context/authProvider";
@@ -35,6 +34,8 @@ export const MyAppBar = () => (
 
 const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
 
+const Dashboard = () => (<div>Dashboard</div>)
+
 const AdminPage = ({ params: { lng } }: IPageProps) => {
   console.log('🚀 ~ file: page.tsx:14 ~ lng:', lng)
   const [mounted, setMounted] = useState(false);
@@ -63,6 +64,7 @@ const AdminPage = ({ params: { lng } }: IPageProps) => {
           loginPage={LoginPage}
           title="Admin side"
           layout={MyLayout}
+          dashboard={Dashboard}
         >
           {/* <CustomRoutes>
             <Route

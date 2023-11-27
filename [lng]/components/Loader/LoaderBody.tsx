@@ -1,14 +1,7 @@
 'use client'
+import { MutatingDots } from "react-loader-spinner"
 
-import { useIsFetching } from '@tanstack/react-query';
-import React from 'react';
-import { MutatingDots } from 'react-loader-spinner';
-
-const Loader: React.FC = () => {
-  const isFetching = useIsFetching();
-
-  if (!isFetching) return null;
-
+const LoaderBody = () => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
       <MutatingDots
@@ -23,7 +16,7 @@ const Loader: React.FC = () => {
         visible={true}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Loader;
+export default LoaderBody

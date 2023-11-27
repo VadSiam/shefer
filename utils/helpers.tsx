@@ -1,3 +1,4 @@
+import { User } from '@supabase/supabase-js';
 import toast from 'react-hot-toast';
 
 const displayError = (error: { message: string }) => {
@@ -22,4 +23,8 @@ const convertItems = (items: any[]) => {
   }));
 };
 
-export { displayError, convertItems }
+const isAdminCheck = (user: User|null) => {
+  return user?.role === 'service_role';
+}
+
+export { displayError, convertItems, isAdminCheck }
