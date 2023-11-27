@@ -1,24 +1,26 @@
-import { Edit, SimpleForm, TextInput, required } from "react-admin";
+import { Edit, ListButton, SimpleForm, TextInput, TopToolbar, required } from "react-admin";
 
-const ProductEdit = () => (
-  <Edit>
-    <SimpleForm>
-      <TextInput disabled label="Id" source="id" />
-      <TextInput source="item.name" validate={required()} />
-      <TextInput source="item.price" validate={required()} />
-      <TextInput source="item.description" validate={required()} />
-      {/* <TextInput multiline source="teaser" validate={required()} /> */}
-      {/* <RichTextInput source="body" validate={required()} />
-      <DateInput label="Publication date" source="published_at" />
-      <ReferenceManyField label="Comments" reference="comments" target="post_id">
-        <Datagrid>
-          <TextField source="body" />
-          <DateField source="created_at" />
-          <EditButton />
-        </Datagrid>
-      </ReferenceManyField> */}
-    </SimpleForm>
-  </Edit>
-);
+const ProductEdit = () => {
+
+  const PostEditActions = () => (
+    <TopToolbar>
+      {/* <ShowButton /> */}
+      {/* Add your custom actions */}
+      <ListButton />
+      {/* <Button color="primary" onClick={customAction}>Custom Action</Button> */}
+    </TopToolbar>
+  );
+  
+  return (
+    <Edit actions={<PostEditActions/>} >
+      <SimpleForm>
+        <TextInput disabled label="Id" source="id" />
+        <TextInput source="item.name" validate={required()} />
+        <TextInput source="item.price" validate={required()} />
+        <TextInput source="item.description" validate={required()} />
+      </SimpleForm>
+    </Edit>
+  );
+}
 
 export default ProductEdit;

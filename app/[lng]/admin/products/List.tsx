@@ -12,7 +12,9 @@ const ListActions = () => (
 );
 
 const ProductsList = () => (
-  <List actions={<ListActions />} >
+  <List
+    actions={<ListActions />}
+  >
     <Datagrid>
       <TextField source="id" />
       <TextField source="item.name" />
@@ -22,7 +24,7 @@ const ProductsList = () => (
         <EditButton />
         <ShowButton />
       </>
-      <DateField source="created_at" locales="fr-FR" />
+      <DateField source="updated_at" locales="fr-FR" />
     </Datagrid>
   </List>
 );

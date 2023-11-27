@@ -4,7 +4,7 @@ import { useMainContext } from "@/utils/context/main.context";
 import { IPageProps } from "../page";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Admin, Resource } from 'react-admin';
+import { Admin, AppBar, Layout, Resource, TitlePortal } from 'react-admin';
 import { SetPasswordPage, ForgotPasswordPage } from 'ra-supabase';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { dataProvider } from "@/utils/context/dataProvider";
@@ -13,6 +13,27 @@ import ProductsList from "./products/List";
 import LoginPage from "../login/page";
 import { ProductCreate } from "./products/Create";
 import ProductEdit from "./products/Edit";
+import ProductShow from "./products/Show";
+
+const MainPageButton = () => (
+  <a 
+  className="flex items-center"
+  href="/">
+    <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+      SHOP
+    </button>
+  </a>
+);
+
+export const MyAppBar = () => (
+  <AppBar>
+    <TitlePortal />
+    <MainPageButton />
+  </AppBar>
+);
+
+
+const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
 
 const AdminPage = ({ params: { lng } }: IPageProps) => {
   console.log('🚀 ~ file: page.tsx:14 ~ lng:', lng)
@@ -41,6 +62,7 @@ const AdminPage = ({ params: { lng } }: IPageProps) => {
           authProvider={authProvider}
           loginPage={LoginPage}
           title="Admin side"
+          layout={MyLayout}
         >
           {/* <CustomRoutes>
             <Route
@@ -53,11 +75,13 @@ const AdminPage = ({ params: { lng } }: IPageProps) => {
             />
             <Route path={`/${lng}/products`} element={<AdminProductsList />} />
           </CustomRoutes> */}
-          <Resource name="products" list={ProductsList} />
-          <Resource name="products/create" list={ProductCreate} />
-          <Resource name="products/:id" list={ProductEdit} />
-
-          {/* <Resource name="authors" list={ListGuesser} /> */}
+          <Resource
+            name="products"
+            list={ProductsList}
+            show={ProductShow}
+            create={ProductCreate}
+            edit={ProductEdit}
+          />
         </Admin>
       </BrowserRouter>
     </div>

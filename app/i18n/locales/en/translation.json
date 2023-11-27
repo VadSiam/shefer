@@ -3,5 +3,6 @@
   "О нас": "About us",
   "Контакты": "Contacts",
   "Аккаунт": "Account",
-  "languageSwitcher": "Switch from <1>{{lng}}</1> to: "
+  "languageSwitcher": "Switch from <1>{{lng}}</1> to: ",
+  "Админка": "Admin panel"
 }
