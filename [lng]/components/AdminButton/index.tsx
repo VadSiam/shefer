@@ -22,7 +22,7 @@ const AdminButton: React.FC<IAdmin> = ({ lng }) => {
 
   return (
     <a
-      href={`/${lng}/admin`}
+      href="/"
       className='flex items-center mr-3'
       aria-current="page"
     >
