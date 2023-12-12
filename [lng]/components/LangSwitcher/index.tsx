@@ -1,16 +1,9 @@
 'use client'
 
-import { useTranslation } from '@/app/i18n';
-import { languages } from '@/app/i18n/settings';
-import { useMainContext } from '@/utils/context/main.context';
-import { TFunction } from 'i18next/typescript/t';
-import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import { Trans } from 'react-i18next/TransWithoutContext';
+import { useCallback } from 'react';
 
-const LangSwitcher = ({ t, lng }: { t: TFunction<any, string>, lng: string }) => {
+const LangSwitcher = ({ lng }: { lng: string }) => {
 
   const router = useRouter();
   const isRuLanguage = lng === 'ru';
@@ -18,7 +11,7 @@ const LangSwitcher = ({ t, lng }: { t: TFunction<any, string>, lng: string }) =>
   const toggleLang = useCallback(() => {
     const newLang = isRuLanguage ? 'en' : 'ru';
     router.push(`/${newLang}`)
-  }, [isRuLanguage]);
+  }, [isRuLanguage, router]);
 
   return (
     <label

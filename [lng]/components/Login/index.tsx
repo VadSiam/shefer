@@ -57,6 +57,18 @@ const Login = ({
     return redirect('/login?message=Check email to continue sign in process')
   }
 
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.currentTarget);
+    await signIn(formData);
+  };
+
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.currentTarget);
+    await signUp(formData);
+  };
+
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
@@ -82,7 +94,7 @@ const Login = ({
 
       <form
         className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-        action={signIn}
+        onSubmit={handleSignIn}
       >
         <label className="text-md" htmlFor="email">
           Email
@@ -109,7 +121,9 @@ const Login = ({
           Sign In
         </button>
         <button
-          formAction={signUp}
+          type="button"
+          // @ts-ignore
+          onClick={handleSignUp}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
         >
           Sign Up

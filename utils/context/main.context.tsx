@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, ReactNode, useEffect, useState, useCallback, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect, useState, useCallback } from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createClient } from '../supabase/client';
 import { convertItems, displayError } from '../helpers';
@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { Session, User } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic'
 
-type Theme = 'light' | 'dark';
 interface ProductsState {
   products: any[]; // Replace 'any' with the actual type of your products
   isLoading: boolean;
@@ -44,7 +43,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     await supabase.auth.signOut()
     setUserData(null)
     router.push('/login')
-  }, [setUserData, supabase]);
+  }, [router, supabase.auth]);
 
   const userQuery = useQuery({
     queryKey: ['user'],
@@ -121,9 +120,9 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     productsQuery.refetch();
-    // sessionQuery.refetch();
     userQuery.refetch();
-  }, [productsQuery, userQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Provide the products and loading state directly from the query object
   const value = {

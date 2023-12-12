@@ -6,7 +6,6 @@ import LogoImage from "./LogoImage";
 import { useState } from "react";
 import { useTranslation } from "@/app/i18n/client";
 import LangSwitcher from "../LangSwitcher";
-import { useMainContext } from "@/utils/context/main.context";
 import AdminButton from "../AdminButton";
 
 const activePassiveNameStyles = (pathname: string, name: string): string => {
@@ -20,8 +19,6 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
-  const { userData } = useMainContext();
-
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
@@ -106,7 +103,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
               <ThemeSwitcher />
             </li>
             <li className="flex pl-3 py-2">
-              <LangSwitcher lng={lng} t={t} />
+              <LangSwitcher lng={lng} />
             </li>
           </ul>
         </div>
