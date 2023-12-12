@@ -1,6 +1,5 @@
-import { IPageProps } from "../page";
 
-const CatalogPage = ({ params: { lng } }: IPageProps) => {
+const CatalogPage = () => {
   return (
     <div>
       Catalog page

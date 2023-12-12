@@ -10,7 +10,6 @@ const AccountPage = ({ params: { lng } }: IPageProps) => {
   const router = useRouter();
   const { userData, isLoading } = useMainContext();
 
-  console.log('🚀 ~ file: page.tsx:6 ~ userData:', isLoading, userData)
   useEffect(() => {
     setMounted(true);
   }, []);

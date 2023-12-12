@@ -1,6 +1,5 @@
-import { IPageProps } from "../page";
 
-const AboutPage = ({ params: { lng } }: IPageProps) => {
+const AboutPage = () => {
   return (
     <div>
       <h1>About</h1>

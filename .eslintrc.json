@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "next"
+  ],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/function-component-definition": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "semi": "off",
+    "import/no-cycle": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 140
+      }
+    ],
+    "no-nested-ternary": "off",
+    "react/require-default-props": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}

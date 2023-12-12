@@ -123,7 +123,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     productsQuery.refetch();
     // sessionQuery.refetch();
     userQuery.refetch();
-  }, []);
+  }, [productsQuery, userQuery]);
 
   // Provide the products and loading state directly from the query object
   const value = {

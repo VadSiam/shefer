@@ -1,6 +1,5 @@
-import { IPageProps } from "../page";
 
-const ContactsPage = ({ params: { lng } }: IPageProps) => {
+const ContactsPage = () => {
   return (
     <div>
       <h1>Contacts</h1>

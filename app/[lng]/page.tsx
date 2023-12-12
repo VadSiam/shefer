@@ -8,7 +8,7 @@ export interface IPageProps {
   params: IPageElementProps
 }
 
-export default async function MainPage({ params: { lng } }: IPageProps) {
+export default async function MainPage() {
 
   return (
     <ProductsList />
