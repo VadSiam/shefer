@@ -10,14 +10,20 @@ function LogoImage() {
       src='/logo.svg'
       break
     case 'dark':
-      src='/logoDark.png'
+      src='/logoDark.svg'
       break
     default:
       src='/logo.svg'
       break
   }
 
-  return <img src={src} className="h-8 mr-3" alt="Shefer Logo" />
+  return <Image
+    src={src}
+    alt="Shefer Logo"
+    width={100}
+    height={32}
+    className="h-8 mr-3"
+  />
 }
 
 export default LogoImage

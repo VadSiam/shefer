@@ -1,4 +1,3 @@
-import { GeistSans } from 'geist/font'
 import { QueryClientProviderWrapper } from '@/utils/context/main.context'
 import { Toaster } from 'react-hot-toast'
 import { dir } from 'i18next'
@@ -9,6 +8,7 @@ import { languages } from '../i18n/settings'
 import Footer from '@/[lng]/components/Footer'
 import { Suspense } from 'react'
 import LoaderBody from '@/[lng]/components/Loader/LoaderBody'
+import { Arsenal } from 'next/font/google'
 
 
 export async function generateStaticParams() {
@@ -25,6 +25,11 @@ export const metadata = {
   description: 'The fastest way to build apps with Next.js and Supabase',
 }
 
+const arsenal = Arsenal({
+  subsets: ['cyrillic', 'cyrillic-ext', 'latin', 'latin-ext'],
+  weight: ['400', '700'],
+})
+
 export default function RootLayout({
   children,
   params: {
@@ -37,8 +42,9 @@ export default function RootLayout({
   }
 }) {
 
+
   return (
-    <html lang={lng} dir={dir(lng)} className={GeistSans.className}>
+    <html lang={lng} dir={dir(lng)} className={arsenal.className}>
       <body className="bg-background-white text-foreground-dark-gray dark:bg-background dark:text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           <QueryClientProviderWrapper>
