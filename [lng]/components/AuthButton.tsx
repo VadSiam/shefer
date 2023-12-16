@@ -1,16 +1,18 @@
 'use client'
+
+import Image from 'next/image'
 import { useMainContext } from '@/utils/context/main.context'
 import StyledLink from './ThemesComponents/StyledLink'
 import { IPageElementProps } from '@/app/[lng]/page'
 import { useTranslation } from '@/app/i18n/client'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { getRandomNumber } from '@/utils/helpers'
 
 
 const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
-  const { resetUserData, userData } = useMainContext();
+  const { userData } = useMainContext();
   const { t } = useTranslation(lng, 'header')
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  console.log('🚀 ~ file: AuthButton.tsx:14 ~ dropdownOpen:', dropdownOpen)
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -18,14 +20,18 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
     () => setDropdownOpen((state) => !state), []
   );
 
+  const randomNumber = useMemo(() => getRandomNumber(1, 16), []);
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (buttonRef.current && buttonRef.current.contains(event.target)) {
+      // @ts-ignore
+      if (buttonRef?.current?.contains?.(event.target)) {
         // Clicked the button, ignore
         return;
       }
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      // @ts-ignore
+      if (dropdownRef.current && !dropdownRef?.current?.contains(event.target)) {
         setDropdownOpen(false);
       }
     };
@@ -36,11 +42,6 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
     };
   }, []);
 
-
-
-  const signOut = async () => {
-    resetUserData()
-  }
 
   return (
     <>
@@ -58,7 +59,13 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
               data-dropdown-placement="bottom"
             >
               <span className="sr-only">Open user menu</span>
-              <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+              <Image
+                className="w-8 h-8 rounded-full"
+                src={`/avatars/${randomNumber}.png`}
+                width={32}
+                height={32}
+                alt="user photo"
+              />
             </button>
             <div className='relative' ref={dropdownRef}>
               <div className={`absolute right-0 top-2 z-50 ${dropdownOpen ? '' : 'hidden'} my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}

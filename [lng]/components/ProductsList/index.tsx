@@ -2,7 +2,7 @@
 import { useMainContext } from "@/utils/context/main.context";
 
 const ProductsList = () => {
-  const { products, userData } = useMainContext();
+  const { products } = useMainContext();
   return (
     <div>
       {products?.map((product) => (
