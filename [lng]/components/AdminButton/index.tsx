@@ -1,9 +1,5 @@
 'use client'
-import Link from 'next/link'
-import { User } from '@supabase/supabase-js'
 import { useMainContext } from '@/utils/context/main.context'
-import StyledButton from '../ThemesComponents/StyledButton'
-import StyledLink from '../ThemesComponents/StyledLink'
 import { useTranslation } from '@/app/i18n/client'
 import { isAdminCheck } from '@/utils/helpers'
 
@@ -22,7 +18,7 @@ const AdminButton: React.FC<IAdmin> = ({ lng }) => {
 
   return (
     <a
-      href="/"
+      href="https://main.d39t7zu29tonk1.amplifyapp.com"
       className='flex items-center mr-3'
       aria-current="page"
     >

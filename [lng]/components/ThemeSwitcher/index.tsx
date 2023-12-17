@@ -1,18 +1,18 @@
 'use client'
 
-import { useMainContext } from '@/utils/context/main.context';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 
-const ThemeSwitcher = () => {
-  
+const ThemeSwitcher = ({ action }: { action?: () => void }) => {
+
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  
+
   const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark")
-  }, [theme]);
-  
+    action?.();
+  }, [action, setTheme, theme]);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -27,14 +27,14 @@ const ThemeSwitcher = () => {
   return (
     <label
       htmlFor="AcceptConditions"
-      className="relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
+      className="self-center relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
     >
       <input
         type="checkbox"
         id="AcceptConditions"
         className="peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden"
         onClick={toggleTheme}
-        onChange={() => {}}
+        onChange={() => { }}
         checked={isDarkTheme}
       />
 

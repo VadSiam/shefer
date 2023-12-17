@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "bufferutil",
     "commentable",
     "Datagrid",
     "languagedetector",
@@ -11,6 +12,8 @@
     "tanstack",
     "Админка",
     "Аккаунт",
+    "Войти",
+    "Выйти",
     "Каталог",
     "Контакты",
     "Переключить"

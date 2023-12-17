@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
+        background: 'hsl(var(--background-black))',
         foreground: 'hsl(var(--foreground))',
         'background-white': 'var(--background-white)',
         'background-beige': 'var(--background-beige)',
@@ -16,6 +16,7 @@ module.exports = {
         btn: {
           background: 'hsl(var(--btn-background))',
           'background-hover': 'hsl(var(--btn-background-hover))',
+          'text-background-hover': 'var(--background-beige)',
         },
       },
     },

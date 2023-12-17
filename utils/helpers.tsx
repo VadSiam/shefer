@@ -23,8 +23,17 @@ const convertItems = (items: any[]) => {
   }));
 };
 
-const isAdminCheck = (user: User|null) => {
+const isAdminCheck = (user: User | null) => {
   return user?.role === 'service_role';
 }
 
-export { displayError, convertItems, isAdminCheck }
+function getRandomNumber(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export {
+  displayError,
+  convertItems,
+  isAdminCheck,
+  getRandomNumber,
+}

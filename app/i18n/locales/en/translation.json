@@ -1,4 +1,6 @@
 {
+  "ВОЙТИ": "LOGIN",
+  "ВЫЙТИ": "LOGOUT",
   "Каталог": "Catalog",
   "О нас": "About us",
   "Контакты": "Contacts",

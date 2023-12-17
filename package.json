@@ -8,13 +8,13 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@next/font": "^14.0.4",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@tanstack/react-query": "^5.7.2",
     "accept-language": "^3.0.18",
     "autoprefixer": "10.4.15",
     "bufferutil": "^4.0.8",
-    "geist": "^1.0.0",
     "i18next": "^23.7.6",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-resources-to-backend": "^1.2.0",
