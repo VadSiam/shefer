@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
+        background: 'hsl(var(--background-black))',
         foreground: 'hsl(var(--foreground))',
         'background-white': 'var(--background-white)',
         'background-beige': 'var(--background-beige)',

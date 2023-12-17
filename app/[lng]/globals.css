@@ -10,6 +10,7 @@
     --foreground: 200 50% 3%;
     --background-beige: #C8C5BD;
     --background-white: #F4F4F4;
+    --background-black: #0A0A0A;
     --foreground-dark-gray: #333333;
     --svg-stroke-color: #000000;
   }
@@ -22,6 +23,7 @@
       --foreground: 200 20% 96%;
       --background-beige: #C8C5BD;
       --background-white: #F4F4F4;
+      --background-black: #0A0A0A;
       --foreground-dark-gray: #333333;
       --svg-stroke-color: #000000;
     }

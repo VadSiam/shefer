@@ -39,7 +39,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
   }
 
   return (
-    <nav className="bg-background-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav className="bg-background-white dark:bg-background fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="uppercase max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center">
           <LogoImage />
@@ -47,7 +47,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
         <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isMobileMenuVisible ? 'block' : 'hidden'}`}
           id="navbar-sticky"
         >
-          <ul className="flex w-screen absolute left-0 -top-4 h-screen md:static md:h-auto md:w-auto flex-col p-4 md:p-0 mt-4 font-medium bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-background-white dark:bg-black md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex w-screen absolute left-0 -top-4 h-screen md:static md:h-auto md:w-auto flex-col p-4 md:p-0 mt-4 font-medium bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-background-white dark:bg-black md:dark:bg-background dark:border-gray-700">
             <li
               className="md:hidden flex flex-col justify-center items-end mb-2"
               onClick={toggleMenu}
