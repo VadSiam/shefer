@@ -21,8 +21,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Next.js and Supabase Starter Kit',
-  description: 'The fastest way to build apps with Next.js and Supabase',
+  title: 'Shefer brand',
+  description: 'Shefer online shop',
 }
 
 const arsenal = Arsenal({
@@ -51,7 +51,7 @@ export default function RootLayout({
             <Header lng={lng} />
             <Loader />
             <Toaster position="top-center" reverseOrder={false} />
-            <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20 md:mt-20">
+            <div className="flex-1 w-full flex flex-col gap-20 items-center mt-22 md:mt-22">
               <Suspense fallback={<LoaderBody />}>
                 {children}
               </Suspense>

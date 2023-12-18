@@ -19,6 +19,12 @@ module.exports = {
           'text-background-hover': 'var(--background-beige)',
         },
       },
+      height: {
+        '22': '90px',
+      },
+      spacing: {
+        '22': '90px',
+      },
     },
   },
   plugins: [],
