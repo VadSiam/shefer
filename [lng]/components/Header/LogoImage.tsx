@@ -23,6 +23,7 @@ function LogoImage() {
     width={100}
     height={32}
     className="h-8 mr-3"
+    priority={true}
   />
 }
 
