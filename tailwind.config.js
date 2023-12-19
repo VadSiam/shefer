@@ -21,6 +21,8 @@ module.exports = {
       },
       height: {
         '22': '90px',
+        '1/2-screen': '50vh',
+        '2/3-screen': '67vh',
       },
       spacing: {
         '22': '90px',

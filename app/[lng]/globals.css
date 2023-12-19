@@ -1,3 +1,5 @@
+@import 'app/[lng]/customCss/embla.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
