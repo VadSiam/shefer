@@ -1,7 +1,6 @@
-import LightBox, { galleryTab } from "@/[lng]/components/LightBox";
-import Hero from "@/[lng]/components/Home/Hero";
-import EmblaCarousel from "@/[lng]/components/Carousel";
+import HeroBlock from "@/[lng]/components/Home/HeroBlock";
 import { EmblaOptionsType } from 'embla-carousel-react'
+import PopProductsBlock from "@/[lng]/components/Home/PopProductsBlock";
 
 export interface IPageElementProps {
   lng: string
@@ -11,18 +10,18 @@ export interface IPageProps {
   params: IPageElementProps
 }
 
-const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
+export interface ExtendedEmblaOptionsType extends EmblaOptionsType {
+  autoplay?: boolean; // Extending the type to add autoplay
+}
+
 
 export default async function MainPage({ params: { lng } }: { params: IPageElementProps }) {
 
   return (
-    <>
-      {/* <Hero lng={lng} /> */}
-      {/* <LightBox /> */}
-      <EmblaCarousel slides={galleryTab} options={OPTIONS} />
-      <div className='active-card w-full h-10' />
-
-    </>
+    <div className="w-full">
+      <HeroBlock lng={lng} />
+      <PopProductsBlock lng={lng} />
+    </div>
   );
 }
 

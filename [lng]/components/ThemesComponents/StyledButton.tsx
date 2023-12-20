@@ -3,18 +3,21 @@ interface StyledButtonProps {
   onClick: () => void;
   disabled?: boolean;
   customClassName?: string;
-  textButton?: boolean; // New prop for text-style button
+  textButton?: boolean;
+  alternative?: boolean;
 }
 
 const StyledButton = (props: StyledButtonProps) => {
-  const { text, onClick, disabled, customClassName, textButton } = props;
+  const { text, onClick, disabled, customClassName, textButton, alternative } = props;
 
   // Conditional classes for the text-style button
   const buttonStyleClasses = textButton
-    ? "bg-transparent hover:bg-btn-text-background-hover dark:hover:bg-dark-btn-background-hover text-btn-text dark:text-dark-btn-text"
-    : "bg-btn-background dark:bg-background-white text-foreground";
+    ? "rounded-md bg-transparent hover:bg-btn-text-background-hover dark:hover:bg-dark-btn-background-hover text-btn-text dark:text-dark-btn-text"
+    : alternative
+      ? "text-teal-700 bg-transparent border-2 border-teal-700 rounded-full hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-teal-700 focus:ring-opacity-50 dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-teal-700"
+      : "bg-btn-background dark:bg-background-white text-foreground"
 
-  const buttonClasses = `py-2 px-4 rounded-md no-underline ${buttonStyleClasses} ${customClassName ?? ""}`;
+  const buttonClasses = `py-2 px-4 no-underline ${buttonStyleClasses} ${customClassName ?? ""}`;
 
   return (
     <button

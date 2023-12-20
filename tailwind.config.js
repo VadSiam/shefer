@@ -27,7 +27,13 @@ module.exports = {
       spacing: {
         '22': '90px',
       },
+      boxShadow: {
+        'custom-light': '0px 10px 14px 0px rgba(0, 0, 0, 0.25)', // for light mode
+        'custom-dark': '0px 10px 14px 0px rgba(0, 112, 129, 0.25)', // for dark mode
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss/nesting"),
+  ],
 }
