@@ -7,9 +7,9 @@ const Hero = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng, 'mainPage')
 
   return (
-    <div className="relative h-screen w-full flex items-center justify-start">
+    <div className="relative h-screen w-full flex items-center justify-start mb-14">
       <Image
-        src="/img/hero.png" // Replace with the path to your image
+        src="/img/hero.png"
         alt="Permanent Makeup Products"
         layout="fill"
         objectFit="cover"

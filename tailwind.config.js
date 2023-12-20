@@ -21,11 +21,19 @@ module.exports = {
       },
       height: {
         '22': '90px',
+        '1/2-screen': '50vh',
+        '2/3-screen': '67vh',
       },
       spacing: {
         '22': '90px',
       },
+      boxShadow: {
+        'custom-light': '0px 10px 14px 0px rgba(0, 0, 0, 0.25)', // for light mode
+        'custom-dark': '0px 10px 14px 0px rgba(0, 112, 129, 0.25)', // for dark mode
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss/nesting"),
+  ],
 }

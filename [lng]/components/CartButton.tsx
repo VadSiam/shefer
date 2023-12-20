@@ -1,11 +1,18 @@
-import Link from "next/link"
+import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 const CartButton = ({ lng }: { lng: string }) => {
+  const router = useRouter();
+
+  const goingCart = useCallback(() => {
+    router.push(`/${lng}/cart`)
+  }, [router, lng]);
+
 
   return (
-    <Link
-      href={`/${lng}/cart`}
-      className="ml-4 relative inline-flex items-center p-1 text-sm font-medium text-center focus:ring-4 focus:outline-none"
+    <div
+      onClick={goingCart}
+      className="ml-4 cursor-pointer no-underline relative inline-flex items-center p-1 text-sm font-medium text-center focus:ring-4 focus:outline-none active:outline-none"
     >
       <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +25,7 @@ const CartButton = ({ lng }: { lng: string }) => {
       <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -end-2">
         2
       </div>
-    </Link>
+    </div>
   )
 
 }
