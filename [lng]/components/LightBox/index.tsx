@@ -119,6 +119,7 @@ const LightBox = () => {
         open={open}
         close={() => setOpen(false)}
         plugins={[Zoom]}
+        // @ts-ignore
         showPrevNext={false}
         slides={slides}
         render={{ slide: NextJsImage }}
