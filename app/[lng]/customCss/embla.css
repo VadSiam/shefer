@@ -10,23 +10,30 @@
 }
 
 .embla {
-  --slide-spacing: 1rem;
-  --slide-size: 33%;
+  --slide-spacing: -1rem;
+  --slide-size: 100%;
+
   --slide-height: 40vh;
   padding: 1.6rem;
   width: 100%;
 }
 
 /* Mobile styles */
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .embla {
-    --slide-spacing: -1rem;
-    --slide-size: 100%;
+    --slide-spacing: 1rem;
+    --slide-size: 33%;
+  }
+}
+@media (min-width: 1024px) {
+  .embla {
+    --slide-spacing: 1rem;
+    --slide-size: 25%;
   }
 }
 
 .embla__viewport {
-  height: 70vh;
+  height: 60vh;
   overflow: hidden;
 }
 

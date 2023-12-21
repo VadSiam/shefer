@@ -90,10 +90,10 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
                 {t('Аккаунт')}
               </a>
             </li>}
-            <li className="flex pl-3 py-2">
+            <li className="flex pl-3">
               <LangSwitcher lng={lng} />
             </li>
-            <li className="flex pl-3 py-2">
+            <li className="flex pl-3">
               <ThemeSwitcher action={closeMenu} />
             </li>
             {userData && <div className="flex md:hidden">

@@ -15,7 +15,7 @@ const Hero = ({ lng }: { lng: string }) => {
         objectFit="cover"
         quality={100}
       />
-      <div className="absolute left-7 text-left">
+      <div className="absolute left-7 text-left text-foreground-white">
         <h1 className="text-4xl font-bold">
           <div className="">{t('Пигменты и оборудование').toUpperCase()}</div>
           <div className="">{t('для перманентного макияжа').toUpperCase()}</div>
@@ -23,7 +23,7 @@ const Hero = ({ lng }: { lng: string }) => {
 
         <button
           onClick={() => { }}
-          className="mt-20 font-bold py-4 px-24 border dark:border-background-white border-foreground-dark-gray rounded-full"
+          className="mt-20 font-bold py-4 px-24 border border-background-white rounded-full"
         >
           {t('Каталог').toUpperCase()}
         </button>
