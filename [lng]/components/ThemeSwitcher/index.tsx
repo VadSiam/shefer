@@ -6,12 +6,14 @@ import { useCallback, useEffect, useState } from 'react';
 const ThemeSwitcher = ({ action }: { action?: () => void }) => {
 
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
+
+  const isDarkTheme = theme === 'system' ? (systemTheme === 'dark') : (theme === 'dark');
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark")
+    setTheme(isDarkTheme ? "light" : "dark")
     action?.();
-  }, [action, setTheme, theme]);
+  }, [action, isDarkTheme, setTheme]);
 
   useEffect(() => {
     setMounted(true);
@@ -22,7 +24,6 @@ const ThemeSwitcher = ({ action }: { action?: () => void }) => {
     return null;
   }
 
-  const isDarkTheme = theme === 'dark';
 
   return (
     <label
