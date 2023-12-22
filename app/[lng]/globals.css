@@ -14,8 +14,20 @@
     --background-beige: #C8C5BD;
     --background-white: #F4F4F4;
     --background-black: #0A0A0A;
+    --foreground-black: #0A0A0A;
     --foreground-dark-gray: #333333;
-    --svg-stroke-color: #000000;
+    --svg-stroke-color: #0A0A0A;
+
+    --sh-black: #0a0a0a;
+    --sh-white: #f4f4f4;
+    --sh-brown: #56514e;
+    --sh-grey: #b4b4b4;
+    --sh-wine: #7d1a24;
+    --sh-sand: #bca18e;
+    --sh-azure: #007081;
+    --sh-passion: #d70028;
+    --sh--grey-dark: #383838;
+
   }
 
   @media (prefers-color-scheme: dark) {
@@ -28,12 +40,23 @@
       --background-beige: #C8C5BD;
       --background-white: #F4F4F4;
       --background-black: #0A0A0A;
+      --foreground-black: #0A0A0A;
       --foreground-dark-gray: #333333;
-      --svg-stroke-color: #000000;
+      --svg-stroke-color: #0A0A0A;
+
+      --sh-black: #0a0a0a;
+      --sh-white: #f4f4f4;
+      --sh-brown: #56514e;
+      --sh-grey: #b4b4b4;
+      --sh-wine: #7d1a24;
+      --sh-sand: #bca18e;
+      --sh-azure: #007081;
+      --sh-passion: #d70028;
+      --sh--grey-dark: #383838;
     }
 
     .dark {
-      --svg-stroke-color: #ffffff;
+      --svg-stroke-color: #F4F4F4;
       /* Stroke color for dark mode */
     }
   }

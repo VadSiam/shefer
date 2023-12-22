@@ -2,9 +2,16 @@
 
 import { useTranslation } from '@/app/i18n/client';
 import Image from 'next/image';
+import StyledButton from '../ThemesComponents/StyledButton';
+import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Hero = ({ lng }: { lng: string }) => {
+  const router = useRouter();
   const { t } = useTranslation(lng, 'mainPage')
+  const goingProduct = useCallback(() => {
+    router.push(`/${lng}/catalog`)
+  }, [lng, router]);
 
   return (
     <div className="relative h-screen w-full flex items-center justify-start mb-14">
@@ -22,8 +29,8 @@ const Hero = ({ lng }: { lng: string }) => {
         </h1>
 
         <button
-          onClick={() => { }}
-          className="mt-20 font-bold py-4 px-24 border border-background-white rounded-full"
+          onClick={goingProduct}
+          className="mt-20 font-bold py-4 px-24 border border-background-white rounded-full hover:bg-sh-azure"
         >
           {t('Каталог').toUpperCase()}
         </button>
