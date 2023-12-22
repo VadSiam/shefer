@@ -76,7 +76,7 @@
 }
 
 .embla__button {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   background-color: transparent;
   touch-action: manipulation;
   display: inline-flex;
@@ -119,7 +119,7 @@
 }
 
 .embla__dot {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   background-color: transparent;
   touch-action: manipulation;
   display: inline-flex;

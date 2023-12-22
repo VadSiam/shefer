@@ -56,7 +56,7 @@ export default function RootLayout({
                 {children}
               </Suspense>
             </div>
-            <Footer />
+            <Footer lng={lng} />
           </QueryClientProviderWrapper>
         </main>
       </body>

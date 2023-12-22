@@ -14,6 +14,7 @@
     --background-beige: #C8C5BD;
     --background-white: #F4F4F4;
     --background-black: #0A0A0A;
+    --foreground-black: #0A0A0A;
     --foreground-dark-gray: #333333;
     --svg-stroke-color: #000000;
   }
@@ -28,6 +29,7 @@
       --background-beige: #C8C5BD;
       --background-white: #F4F4F4;
       --background-black: #0A0A0A;
+      --foreground-black: #0A0A0A;
       --foreground-dark-gray: #333333;
       --svg-stroke-color: #000000;
     }

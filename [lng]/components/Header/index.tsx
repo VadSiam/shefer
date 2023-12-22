@@ -39,7 +39,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
   }
 
   return (
-    <nav className="h-22 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav className="h-22 fixed w-full z-20 top-0 left-0 border-b border-foreground-black dark:border-foreground-white">
       <div className="uppercase max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
         <a href="/" className="flex items-center">
           <LogoImage />

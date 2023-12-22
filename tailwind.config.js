@@ -11,6 +11,7 @@ module.exports = {
         background: 'hsl(var(--background-black))',
         foreground: 'hsl(var(--foreground))',
         'foreground-white': 'var(--foreground-white)',
+        'foreground-black': 'var(--foreground-black)',
         'background-white': 'var(--background-white)',
         'background-beige': 'var(--background-beige)',
         'foreground-dark-gray': 'var(--foreground-dark-gray)',
