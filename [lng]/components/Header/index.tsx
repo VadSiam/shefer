@@ -12,7 +12,7 @@ import CartButton from "../CartButton";
 
 const activePassiveNameStyles = (pathname: string, name: string): string => {
   return pathname.includes(name)
-    ? ' text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500'
+    ? ' text-white bg-sh-azure rounded md:bg-transparent md:text-sh-azure md:p-0 md:dark:text-sh-azure'
     : ' text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
 }
 
@@ -52,9 +52,11 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
               className="md:hidden flex flex-col justify-center items-end mb-2"
               onClick={toggleMenu}
             >
-              <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" stroke="var(--svg-stroke-color)" strokeWidth="1.5" />
-                <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="var(--svg-stroke-color)" strokeWidth="1.5" strokeLinecap="round" />
+              <svg width="44" height="31" viewBox="0 0 44 31" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.1665 17H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.1665 7H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.1665 27H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </li>
             <li className="flex flex-col justify-center">
@@ -104,7 +106,9 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
         <div className="flex md:order-2">
           <AdminButton lng={lng} />
           <AuthButton lng={lng} />
-          {!isMobileMenuVisible && userData && <CartButton lng={lng} />}
+          {!isMobileMenuVisible && userData && (
+            <CartButton lng={lng} />
+          )}
           <button
             onClick={toggleMenu}
             data-collapse-toggle="navbar-sticky"

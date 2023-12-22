@@ -31,6 +31,17 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
     <div className="embla__slide">
       <div className="mt-5 hover:shadow-custom-light dark:hover:shadow-custom-dark dark:border-gray-400 active-card scale-80 hover:scale-110 hover:z-[-250px] relative rounded-lg transition-transform duration-400 ease-in-out w-full max-w-sm">
         <Image
+          alt="Shefer pigments"
+          src={'https://wiesbdispmispsuqfjne.supabase.co/storage/v1/object/public/products_images/public/moroz_bej1.png'}
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'contain',
+          }}
+          className=' -z-10'
+        />
+        <Image
           className="embla__slide__img p-6"
           src={item.imageUrl}
           alt="Product"
@@ -39,14 +50,14 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
           priority={true}
         />
         <div className="flex flex-col justify-center align-middle text-center px-5 pb-5">
-          <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-xl font-semibold tracking-tight">
             {t(item.title)}
           </div>
-          <div className="text-l font-semibold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-l font-semibold tracking-tight">
             {t(item.type)}
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold">
               {item.price}
             </span>
             <StyledButton

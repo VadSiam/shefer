@@ -15,6 +15,16 @@ module.exports = {
         'background-white': 'var(--background-white)',
         'background-beige': 'var(--background-beige)',
         'foreground-dark-gray': 'var(--foreground-dark-gray)',
+
+        'sh-black': 'var(--sh-black)',
+        'sh-white': 'var(--sh-white)',
+        'sh-brown': 'var(--sh-brown)',
+        'sh-grey': 'var(--sh-grey)',
+        'sh-wine': 'var(--sh-wine)',
+        'sh-sand': 'var(--sh-sand)',
+        'sh-azure': 'var(--sh-azure)',
+        'sh-passion': 'var(--sh-passion)',
+        'sh-grey-dark': 'var(--sh-grey-dark)',
         btn: {
           background: 'hsl(var(--btn-background))',
           'background-hover': 'hsl(var(--btn-background-hover))',
