@@ -54,9 +54,9 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
             >
               <svg width="44" height="31" viewBox="0 0 44 31" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.1665 17H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M2.1665 7H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M2.1665 27H42.1665" stroke="var(--svg-stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.1665 17H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2.1665 7H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2.1665 27H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </li>
             <li className="flex flex-col justify-center">
