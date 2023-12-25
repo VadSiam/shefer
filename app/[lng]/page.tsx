@@ -3,6 +3,7 @@ import { EmblaOptionsType } from 'embla-carousel-react'
 import PopProductsBlock from "@/[lng]/components/Home/PopProductsBlock";
 import StatisticsBlock from "@/[lng]/components/Home/StatisticsBlock";
 import TattooMachineBlock from "@/[lng]/components/Home/TattooMachineBlock";
+import PartnerBlock from "@/[lng]/components/Home/PartnerBlock";
 
 export interface IPageElementProps {
   lng: string
@@ -25,6 +26,7 @@ export default async function MainPage({ params: { lng } }: { params: IPageEleme
       <PopProductsBlock lng={lng} />
       <StatisticsBlock lng={lng} />
       <TattooMachineBlock lng={lng} />
+      <PartnerBlock lng={lng} />
     </div>
   );
 }
