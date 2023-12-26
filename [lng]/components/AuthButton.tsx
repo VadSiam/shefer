@@ -78,7 +78,7 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
                   <li>
                     <a
                       href={`/${lng}/account`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       {t('Аккаунт')}
                     </a>
@@ -118,7 +118,7 @@ export const LogoutButton: React.FC<ILogout> = ({ lng, action }) => {
   return (
     <div
       onClick={signOut}
-      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
       {t('ВЫЙТИ')}
     </div>
   )
