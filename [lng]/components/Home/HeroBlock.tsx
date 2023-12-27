@@ -2,7 +2,6 @@
 
 import { useTranslation } from '@/app/i18n/client';
 import Image from 'next/image';
-import StyledButton from '../ThemesComponents/StyledButton';
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -18,9 +17,10 @@ const Hero = ({ lng }: { lng: string }) => {
       <Image
         src="/img/hero.png"
         alt="Permanent Makeup Products"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
         quality={100}
+        priority={true}
       />
       <div className="absolute left-7 text-left text-foreground-white">
         <h1 className="text-4xl font-bold">

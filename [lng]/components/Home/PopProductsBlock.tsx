@@ -2,8 +2,8 @@
 
 import { ExtendedEmblaOptionsType } from "@/app/[lng]/page";
 import EmblaCarousel from "../Carousel";
-import { galleryTab } from "../LightBox";
 import { useTranslation } from "@/app/i18n/client";
+import { useMainContext } from "@/utils/context/main.context";
 
 interface IPopProductsBlock {
   lng: string;
@@ -17,6 +17,11 @@ const OPTIONS: ExtendedEmblaOptionsType = {
 
 const PopProductsBlock = ({ lng }: IPopProductsBlock) => {
   const { t } = useTranslation(lng, 'mainPage')
+  const { products } = useMainContext();
+  if (!products?.length) {
+    return null;
+  }
+
 
   return (
     <>
@@ -24,7 +29,7 @@ const PopProductsBlock = ({ lng }: IPopProductsBlock) => {
         {t('популярное').toUpperCase()}
       </div>
       <EmblaCarousel
-        slides={galleryTab}
+        slides={products}
         options={OPTIONS}
         lng={lng}
       />

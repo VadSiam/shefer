@@ -5,23 +5,18 @@ import StyledButton from '../ThemesComponents/StyledButton';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useTranslation } from '@/app/i18n/client';
+import { ProductCardProps } from './types';
 
-export interface IProductCard {
-  id: string;
-  imageUrl: string;
-  type: string;
-  title: string;
-  price: string;
-}
 
 interface ProductCartProps {
-  item: IProductCard;
+  item: ProductCardProps;
   lng: string;
 }
 
 const ProductCard = ({ item, lng }: ProductCartProps) => {
   const router = useRouter();
   const { t } = useTranslation(lng, 'mainPage')
+  const isRussian = lng === 'ru';
 
   const goingProduct = useCallback(() => {
     router.push(`/${lng}/catalog/:${item.id}`)
@@ -32,10 +27,10 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
       <div className="mt-5 hover:shadow-custom-light dark:hover:shadow-custom-dark dark:border-gray-400 active-card scale-80 hover:scale-110 hover:z-[-250px] relative rounded-lg transition-transform duration-400 ease-in-out w-full max-w-sm">
         <Image
           alt="Shefer pigments"
-          src={'https://wiesbdispmispsuqfjne.supabase.co/storage/v1/object/public/products_images/public/moroz_bej1.png'}
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${item.color?.url}`}
           quality={100}
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 100vw"
           style={{
             objectFit: 'contain',
           }}
@@ -43,7 +38,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
         />
         <Image
           className="embla__slide__img p-6"
-          src={item.imageUrl}
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${item.images?.[0]?.url}`}
           alt="Product"
           width={200}
           height={100}
@@ -51,7 +46,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
         />
         <div className="flex flex-col justify-center align-middle text-center px-5 pb-5">
           <div className="text-xl font-semibold tracking-tight">
-            {t(item.title)}
+            {t(isRussian ? item.name : item.nameEn)}
           </div>
           <div className="text-l font-semibold tracking-tight">
             {t(item.type)}
