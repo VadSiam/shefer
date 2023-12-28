@@ -15,6 +15,7 @@ module.exports = {
         'background-white': 'var(--background-white)',
         'background-beige': 'var(--background-beige)',
         'foreground-dark-gray': 'var(--foreground-dark-gray)',
+        'svg-stroke-color': 'var(--svg-stroke-color)',
 
         'sh-black': 'var(--sh-black)',
         'sh-white': 'var(--sh-white)',

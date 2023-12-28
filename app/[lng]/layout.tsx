@@ -51,7 +51,7 @@ export default function RootLayout({
             <Header lng={lng} />
             <Loader />
             <Toaster position="top-center" reverseOrder={false} />
-            <div className="flex-1 w-full flex flex-col gap-20 items-center mt-22 md:mt-22">
+            <div className="flex-1 w-full flex flex-col gap-2 items-center mt-22 md:mt-22">
               <Suspense fallback={<LoaderBody />}>
                 {children}
               </Suspense>

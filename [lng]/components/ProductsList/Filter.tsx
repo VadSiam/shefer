@@ -1,11 +1,109 @@
-const ProductsListFilter = () => {
+'use client'
+
+import { useTranslation } from "@/app/i18n/client";
+import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
+
+const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAction<string>> }> = ({ lng, setFilter }) => {
+  const { t } = useTranslation(lng, 'Catalog')
+
+  const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  useEffect(() => {
+    setFilter(activeFilter);
+  }, [activeFilter, setFilter]);
+
+  const toggleFilters = useCallback(() => {
+    setShowFilters(state => !state);
+  }, []);
+
+  const handleFilterClick = useCallback((filter: string) => {
+    setActiveFilter(filter);
+  }, []);
+
+  const showBottomFilters = useMemo(() => {
+    return activeFilter === 'pigments' || activeFilter === 'lips' || activeFilter === 'brows' || activeFilter === 'eyes';
+  }, [activeFilter]);
+
+
   return (
-    <div className="flex items-center justify-center py-4 md:py-8 flex-wrap">
-      <button type="button" className="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">All categories</button>
-      <button type="button" className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Shoes</button>
-      <button type="button" className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Bags</button>
-      <button type="button" className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Electronics</button>
-      <button type="button" className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Gaming</button>
+    <div className="w-full flex items-center justify-end py-4 md:p-8 flex-wrap z-20">
+
+      <div className="flex flex-col">
+        <div className="flex items-center mb-2">
+          <button className="w-full text-right mr-1" onClick={toggleFilters}>
+            {t('Фильтр').toUpperCase()}
+          </button>
+          <svg width="7" height="5" viewBox="0 0 7 5" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path transform={showFilters ? "rotate(180, 3.5, 2.5)" : ""} d="M3.5 4.5L0.901925 -4.89399e-07L6.09808 -3.51373e-08L3.5 4.5Z" fill="currentColor" />
+          </svg>
+          <div className="md:hidden" >
+            <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.75 5H18" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M13 5H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M26.75 15H15.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10.5 15H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M26.75 25H20.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.5 25H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M18 2.5V7.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10.5 12.5V17.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M20.5 22.5V27.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        {showFilters && (
+          <div className="flex flex-col justify-between ">
+            <div className="flex divide-x-2 text-center divide-svg-stroke-color border-b-2 border-svg-stroke-color p-2">
+              <button
+                onClick={() => handleFilterClick('all')}
+                className={`${activeFilter === 'all' ? 'text-sh-azure' : ''} px-4`}
+              >
+                <span className="uppercase">{t('Все')}</span>
+              </button>
+              <button
+                onClick={() => handleFilterClick('pigments')}
+                className={`${showBottomFilters ? 'text-sh-azure' : ''} px-4`}
+              >
+                <span className="uppercase">{t('Пигменты')}</span>
+              </button>
+              <button
+                onClick={() => handleFilterClick('equipment')}
+                className={`${activeFilter === 'equipment' ? 'text-sh-azure' : ''} px-4`}
+              >
+                <span className="uppercase">{t('Оборудование')}</span>
+              </button>
+              <button
+                onClick={() => handleFilterClick('merch')}
+                className={`${activeFilter === 'merch' ? 'text-sh-azure' : ''} px-4`}
+              >
+                <span className="uppercase">{t('Мерч')}</span>
+              </button>
+            </div>
+            {showBottomFilters &&
+              (<div className="flex justify-center text-center divide-x-2 divide-svg-stroke-color p-2">
+                <button
+                  onClick={() => handleFilterClick('lips')}
+                  className={`${activeFilter === 'lips' ? 'text-sh-azure' : ''} px-4 w-full`}
+                >
+                  <span className="uppercase">{t('Губы')}</span>
+                </button>
+                <button
+                  onClick={() => handleFilterClick('brows')}
+                  className={`${activeFilter === 'brows' ? 'text-sh-azure' : ''} px-4 w-full`}
+                >
+                  <span className="uppercase">{t('Брови')}</span>
+                </button>
+                <button
+                  onClick={() => handleFilterClick('eyes')}
+                  className={`${activeFilter === 'eyes' ? 'text-sh-azure' : ''} px-4 w-full`}
+                >
+                  <span className="uppercase">{t('Веки')}</span>
+                </button>
+              </div>)}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
