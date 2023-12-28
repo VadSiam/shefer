@@ -7,8 +7,8 @@ const LoaderBody = () => {
       <MutatingDots
         height="100"
         width="100"
-        color="#4fa94d"
-        secondaryColor='#4fa94d'
+        color="#007081"
+        secondaryColor='#007081'
         radius='20'
         ariaLabel="mutating-dots-loading"
         wrapperStyle={{}}
