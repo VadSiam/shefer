@@ -100,7 +100,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
             </div>}
           </ul>
         </div>
-        <div className="flex md:order-2">
+        <div className="flex justify-end md:order-2">
           <AdminButton lng={lng} />
           <AuthButton lng={lng} />
           {!isMobileMenuVisible && userData && (

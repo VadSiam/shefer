@@ -16,7 +16,7 @@ const CatalogPage: React.FC<{ params: IPageElementProps }> = ({ params: { lng } 
 
   return (
     <>
-      <h2 className="w-full text-5xl text-left md:p-6">
+      <h2 className="w-full text-5xl text-left p-6">
         {t('Каталог').toUpperCase()}
       </h2>
       <ProductsListFilter lng={lng} setFilter={setFilter} />

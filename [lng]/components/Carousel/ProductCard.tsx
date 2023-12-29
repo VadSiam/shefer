@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 import { useTranslation } from '@/app/i18n/client';
 import { ProductCardProps } from './types';
-import StyledButton from '../ThemesComponents/StyledButton';
+// import StyledButton from '../ThemesComponents/StyledButton';
 
 
 interface ProductCartProps {
@@ -27,7 +27,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
   return (
     <div className="embla__slide">
       <div
-        onClick={isMobile ? () => {} : goingProduct}
+        onClick={goingProduct}
         className="mt-5 hover:shadow-custom-light dark:hover:shadow-custom-dark dark:border-gray-400 active-card scale-80 hover:scale-110 hover:z-[-250px] relative rounded-lg transition-transform duration-400 ease-in-out w-full max-w-sm"
       >
         {color && <Image
@@ -39,7 +39,6 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
           style={{
             objectFit: 'contain',
             scale: 1.5,
-            rotate: '20deg',
           }}
           className=' -z-10'
         />}
@@ -58,15 +57,15 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
           <div className="text-l font-semibold tracking-tight mb-2">
             {t(type)}
           </div>
-          <div className="flex items-center justify-between md:justify-center">
+          <div className="flex items-center justify-center">
             <span className="text-3xl font-bold">
               {price}
             </span>
-            {isMobile  && <StyledButton
+            {/* {isMobile  && <StyledButton
               text={t('смотреть').toUpperCase()}
               onClick={goingProduct}
               alternative
-            />}
+            />} */}
           </div>
         </div>
       </div>

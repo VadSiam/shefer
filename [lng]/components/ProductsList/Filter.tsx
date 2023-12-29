@@ -31,24 +31,29 @@ const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAc
 
       <div className="flex flex-col">
         <div className="flex items-center mb-2">
-          <button className="w-full text-right mr-1" onClick={toggleFilters}>
+          <button className="w-full text-right mr-1 hidden md:block" onClick={toggleFilters}>
             {t('Фильтр').toUpperCase()}
           </button>
-          <svg width="7" height="5" viewBox="0 0 7 5" fill="none"
+          <svg
+            className="hidden md:block"
+            width="7" height="5" viewBox="0 0 7 5" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path transform={showFilters ? "rotate(180, 3.5, 2.5)" : ""} d="M3.5 4.5L0.901925 -4.89399e-07L6.09808 -3.51373e-08L3.5 4.5Z" fill="currentColor" />
           </svg>
-          <div className="md:hidden" >
+          <div
+            onClick={toggleFilters}
+            className="md:hidden w-full text-right mr-1 flex justify-end pr-6"
+          >
             <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M26.75 5H18" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M13 5H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M26.75 15H15.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M10.5 15H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M26.75 25H20.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M15.5 25H4.25" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M18 2.5V7.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M10.5 12.5V17.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M20.5 22.5V27.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M26.75 5H18" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M13 5H4.25" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M26.75 15H15.5" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M10.5 15H4.25" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M26.75 25H20.5" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M15.5 25H4.25" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M18 2.5V7.5" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M10.5 12.5V17.5" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M20.5 22.5V27.5" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </div>
