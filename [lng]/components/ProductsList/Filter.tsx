@@ -3,11 +3,13 @@
 import { useTranslation } from "@/app/i18n/client";
 import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
 
-const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAction<string>> }> = ({ lng, setFilter }) => {
+export type filterTypes = 'all' | 'pigment' | 'equipment' | 'merch' | 'lips' | 'brows' | 'eyes';
+
+const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAction<filterTypes>> }> = ({ lng, setFilter }) => {
   const { t } = useTranslation(lng, 'Catalog')
 
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeFilter, setActiveFilter] = useState<filterTypes>('all');
 
   useEffect(() => {
     setFilter(activeFilter);
@@ -17,17 +19,17 @@ const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAc
     setShowFilters(state => !state);
   }, []);
 
-  const handleFilterClick = useCallback((filter: string) => {
+  const handleFilterClick = useCallback((filter: filterTypes) => {
     setActiveFilter(filter);
   }, []);
 
   const showBottomFilters = useMemo(() => {
-    return activeFilter === 'pigments' || activeFilter === 'lips' || activeFilter === 'brows' || activeFilter === 'eyes';
+    return activeFilter === 'pigment' || activeFilter === 'lips' || activeFilter === 'brows' || activeFilter === 'eyes';
   }, [activeFilter]);
 
 
   return (
-    <div className="w-full flex items-center justify-end py-4 md:p-8 flex-wrap z-20">
+    <div className="w-full flex items-center justify-end py-4 md:p-8 flex-wrap">
 
       <div className="flex flex-col">
         <div className="flex items-center mb-2">
@@ -67,7 +69,7 @@ const ProductsListFilter: React.FC<{ lng: string, setFilter: Dispatch<SetStateAc
                 <span className="uppercase">{t('Все')}</span>
               </button>
               <button
-                onClick={() => handleFilterClick('pigments')}
+                onClick={() => handleFilterClick('pigment')}
                 className={`${showBottomFilters ? 'text-sh-azure' : ''} px-4`}
               >
                 <span className="uppercase">{t('Пигменты')}</span>
