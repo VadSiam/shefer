@@ -67,6 +67,7 @@ const TattooMachineBlock: React.FC<ITattoo> = ({ lng }) => {
           alt="Product"
           width={500}
           height={300}
+          style={{ height: 'auto' }}
           priority={true}
         />
       </div>

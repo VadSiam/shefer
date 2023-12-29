@@ -28,7 +28,7 @@ const ThemeSwitcher = ({ action }: { action?: () => void }) => {
   return (
     <label
       htmlFor="AcceptConditions"
-      className="self-center relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
+      className="self-center relative h-8 w-14 my-2 cursor-pointer [-webkit-tap-highlight-color:_transparent]"
     >
       <input
         type="checkbox"

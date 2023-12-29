@@ -8,11 +8,12 @@ import {
   NextButton,
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
-import ProductCard, { IProductCard } from './ProductCard'
+import ProductCard from './ProductCard'
 import { ExtendedEmblaOptionsType } from '@/app/[lng]/page'
+import { ProductCardProps } from './types'
 
 type IEmblaCarousel = {
-  slides: IProductCard[]
+  slides: ProductCardProps[]
   options?: ExtendedEmblaOptionsType
   lng: string
 }

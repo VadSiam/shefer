@@ -1,16 +1,33 @@
 'use client'
 import { useMainContext } from "@/utils/context/main.context";
+import ProductCard from "../Carousel/ProductCard";
+import { filterTypes } from "./Filter";
+import { useMemo } from "react";
 
-const ProductsList = () => {
+const ProductsList: React.FC<{ lng: string, filter: filterTypes }> = ({
+  lng,
+  filter,
+}) => {
+
   const { products } = useMainContext();
+  const filteredProducts = useMemo(() => products?.filter(product => {
+    if (filter === 'all') {
+      return true;
+    } else {
+      return product.type === filter;
+    }
+  }), [products, filter]);
+
   return (
-    <div>
-      {products?.map((product) => (
-        <div key={product.id} className="flex justify-between">
-          <div className="m-1">{product.name}</div>
-          <div className="m-1">{product.price}</div>
-          <div className="m-1">{product.description}</div>
-        </div>
+    <div
+      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4"
+    >
+      {filteredProducts?.map((product, index) => (
+        <ProductCard
+          key={index}
+          lng={lng}
+          item={product}
+        />
       ))}
     </div>
   );

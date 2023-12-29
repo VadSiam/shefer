@@ -52,12 +52,9 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
               className="md:hidden flex flex-col justify-center items-end mb-2"
               onClick={toggleMenu}
             >
-              <svg width="44" height="31" viewBox="0 0 44 31" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.1665 17H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M2.1665 7H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M2.1665 27H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" stroke="var(--svg-stroke-color)" strokeWidth="1.5" />
+                <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="var(--svg-stroke-color)" strokeWidth="1.5" strokeLinecap="round" />              </svg>
             </li>
             <li className="flex flex-col justify-center">
               <a
@@ -103,7 +100,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
             </div>}
           </ul>
         </div>
-        <div className="flex md:order-2">
+        <div className="flex justify-end md:order-2">
           <AdminButton lng={lng} />
           <AuthButton lng={lng} />
           {!isMobileMenuVisible && userData && (
@@ -117,8 +114,11 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
-            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+            <svg width="44" height="31" viewBox="0 0 44 31" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.1665 17H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M2.1665 7H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M2.1665 27H42.1665" stroke="var(--svg-stroke-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>

@@ -7,9 +7,10 @@ import { convertItems, displayError } from '../helpers';
 import { useRouter } from 'next/navigation';
 import { Session, User } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic'
+import { ProductCardProps } from '@/[lng]/components/Carousel/types';
 
 interface ProductsState {
-  products: any[]; // Replace 'any' with the actual type of your products
+  products: ProductCardProps[];
   isLoading: boolean;
   sessionData: Session | null;
   userData: User | null;
@@ -35,7 +36,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
 
   const router = useRouter();
 
-  const [products, setProducts] = React.useState<any[]>([]);
+  const [products, setProducts] = React.useState<ProductCardProps[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
 
