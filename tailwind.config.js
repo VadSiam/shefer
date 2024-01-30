@@ -37,6 +37,9 @@ module.exports = {
         '1/2-screen': '50vh',
         '2/3-screen': '67vh',
       },
+      maxWidth: {
+        '1/3': '33.333333%',
+      },
       spacing: {
         '22': '90px',
       },

@@ -15,7 +15,7 @@ interface Spec {
   weight: string;
 }
 
-interface Image {
+export interface IImage {
   url: string;
   order: number;
 }
@@ -34,6 +34,6 @@ export interface ProductCardProps {
   descriptionEn: string;
   spec: Spec;
   specEn: Spec;
-  images: Image[];
+  images: IImage[];
 }
 
