@@ -16,6 +16,7 @@ interface ProductsState {
   userData: User | null;
   resetUserData: () => void;
   afterLogin: () => void;
+  getProductById: (_id: string) => ProductCardProps | undefined;
 }
 
 // Create the context with a default value
@@ -39,6 +40,10 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = React.useState<ProductCardProps[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
+
+  const getProductById = useCallback((_id: string) => {
+    return products.find(product => `${product.id}` === _id);
+  }, [products]);
 
   const resetUserData = useCallback(async () => {
     await supabase.auth.signOut()
@@ -133,6 +138,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     userData,
     resetUserData,
     afterLogin,
+    getProductById,
   };
 
   return (
