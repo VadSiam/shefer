@@ -6,6 +6,7 @@ import { useTranslation } from '@/app/i18n/client';
 import StyledButton from '@/[lng]/components/ThemesComponents/StyledButton';
 import SwiperElement from '@/[lng]/components/SwiperElement';
 import dynamic from 'next/dynamic';
+import NavigationBreadcrumbs from '@/[lng]/components/Breadcrumbs';
 
 const SwiperElementLazy = dynamic(() => import('@/[lng]/components/SwiperElement'), { ssr: false });
 
@@ -27,9 +28,17 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   const { id: productId, type, color, images, name, nameEn, price, descriptionEn, description } = product;
 
   console.log('🚀 ~ file: page.tsx:16 ~ product:', product)
+  // TODO: Add real breadcrumbs
+  const breadcrumbItems = [
+    { title: "главная", link: "/" },
+    { title: "пигменты", link: "/pigments" },
+    { title: "губы", link: "/lips" },
+    { title: "пигмент страсть", link: "/passion-pigment" },
+  ];
 
   return (
-    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full p-5">
+    <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-4 w-full p-5">
+      <NavigationBreadcrumbs items={breadcrumbItems} />
       <div className="flex-1 p-4 max-w-1/3">
         <SwiperElementLazy images={images} />
         {/* {color && <Image

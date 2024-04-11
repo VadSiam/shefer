@@ -111,7 +111,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       } catch (error: any) {
         // Handle any unexpected errors
         displayError({ message: 'An unexpected error occurred.' });
-        throw error; // re-throw the error
+        console.error('An unexpected error occurred.', error);
       }
     },
     enabled: false,
