@@ -26,6 +26,7 @@ const SwiperElement: React.FC<SwiperElementProps> = ({
   const sortedImages = useMemo(() => images.sort((a, b) => a.order - b.order), [images]);
 
   const [imageModal, setImageModal] = useState<IImage | null>(null);
+  console.log('🚀 ~ imageModal:', imageModal)
   const openModal = useCallback((index: number) => {
     console.log('🚀 ~ file: index.tsx:30 ~ index:', index)
     const image = images.find(image => image.order === index);

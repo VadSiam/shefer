@@ -31,9 +31,15 @@ function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const cleanupId = (dirtyId: string): string => {
+  // Decode URI component and then remove the leading colon if present
+  return decodeURIComponent(dirtyId).replace(/^:/, '');
+};
+
 export {
   displayError,
   convertItems,
   isAdminCheck,
   getRandomNumber,
+  cleanupId,
 }
