@@ -32,5 +32,6 @@
   "Веки": "Eyelids",
   "Фильтр": "Filter",
   "добавить в корзину": "add to basket",
-  "идеально в паре": "perfectly in pair"
+  "идеально в паре": "perfectly in pair",
+  "unitPrice": "{{price}} rub"
 }
