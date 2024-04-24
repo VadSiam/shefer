@@ -4,13 +4,11 @@ import { FC, useState } from "react"
 
 interface ISpec {
   spec: Spec
-  isRus: boolean
   t: TFunction<string, string>
 }
 
 const Specs: FC<ISpec> = ({
   spec,
-  isRus,
   t,
 }) => {
   const [show, setShow] = useState<boolean>(false)

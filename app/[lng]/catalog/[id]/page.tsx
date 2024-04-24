@@ -1,7 +1,6 @@
 'use client'
 
 import NavigationBreadcrumbs from "@/[lng]/components/Breadcrumbs";
-import Image from 'next/image';
 import Container from "@/[lng]/components/Container";
 import StyledButton from "@/[lng]/components/ThemesComponents/StyledButton";
 import { useTranslation } from "@/app/i18n/client";
@@ -30,9 +29,7 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
     return <div>No such product</div>
   }
 
-  const { id: productId, type, color, images, name, nameEn, price, descriptionEn, description, spec, specEn } = product;
-  console.log('🚀 ~ color:', product)
-  console.log('🚀 ~ type:', type, price)
+  const { id: productId, images, name, nameEn, price, descriptionEn, description, spec, specEn } = product;
 
   // TODO: Add real breadcrumbs
   const breadcrumbItems = [
@@ -58,7 +55,6 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
           <div className="text-lg mb-3">{t("unitPrice", { price })}</div>
           <div className="mb-3">{t(isRus ? description : descriptionEn)}</div>
           <Specs
-            isRus={isRus}
             spec={isRus ? spec : specEn}
             t={t}
           />

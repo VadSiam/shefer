@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import AuthButton, { LogoutButton } from "../AuthButton";
 import ThemeSwitcher from "../ThemeSwitcher";
 import LogoImage from "./LogoImage";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "@/app/i18n/client";
 import LangSwitcher from "../LangSwitcher";
 import AdminButton from "../AdminButton";
@@ -24,6 +24,8 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
   const { userData } = useMainContext();
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  const [lastScrollPosition, setLastScrollPosition] = useState(0);
 
   const toggleMenu = useCallback(() => {
     setIsMobileMenuVisible(prevState => !prevState);
@@ -33,13 +35,32 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
     setIsMobileMenuVisible(false);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPosition = window.pageYOffset;
+
+      if (currentScrollPosition > lastScrollPosition && currentScrollPosition > 100) {
+        setIsHeaderCollapsed(true);
+      } else if (currentScrollPosition < lastScrollPosition && currentScrollPosition <= 100) {
+        setIsHeaderCollapsed(false);
+      }
+
+      setLastScrollPosition(currentScrollPosition);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollPosition]);
 
   if (pathname.includes('/admin')) {
     return null;
   }
 
   return (
-    <nav className="h-22 fixed w-full z-20 top-0 left-0 border-b border-foreground-black dark:border-foreground-white">
+    <nav className={`h-22 fixed w-full z-20 top-0 left-0 border-b border-foreground-black dark:border-foreground-white transition-transform duration-1000 ${isHeaderCollapsed ? '-translate-y-full' : 'translate-y-0'}`}>
       <div className="uppercase max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
         <a href="/" className="flex items-center">
           <LogoImage />
