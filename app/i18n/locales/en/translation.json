@@ -33,5 +33,9 @@
   "Фильтр": "Filter",
   "добавить в корзину": "add to basket",
   "идеально в паре": "perfectly in pair",
-  "unitPrice": "{{price}} rub"
+  "unitPrice": "{{price}} rub",
+  "Спецификация": "Спецификация",
+  "Страна": "Country",
+  "Описание": "Description",
+  "Вес": "Weight"
 }

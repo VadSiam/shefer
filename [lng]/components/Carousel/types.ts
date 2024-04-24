@@ -9,7 +9,7 @@ interface Color {
   url: string;
 }
 
-interface Spec {
+export interface Spec {
   country: string;
   desc: string;
   weight: string;

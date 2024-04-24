@@ -9,6 +9,8 @@ import { useMainContext } from "@/utils/context/main.context";
 import { cleanupId } from "@/utils/helpers";
 import dynamic from "next/dynamic";
 import * as React from "react";
+import { ProductCardProps } from "@/[lng]/components/Carousel/types";
+import Specs from "./Specs";
 
 const SwiperElementLazy = dynamic(() => import('@/[lng]/components/SwiperElement'), { ssr: false });
 
@@ -18,17 +20,18 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   id,
 } }) => {
   const { getProductById } = useMainContext();
-  const isRussian = lng === 'ru';
+  const isRus = lng === 'ru';
   const { t } = useTranslation(lng, 'mainPage')
 
   const cleanedId = cleanupId(id);
-  const product = getProductById(cleanedId);
+  const product: ProductCardProps | undefined = getProductById(cleanedId);
 
   if (!cleanedId || !product) {
     return <div>No such product</div>
   }
 
-  const { id: productId, type, color, images, name, nameEn, price, descriptionEn, description } = product;
+  const { id: productId, type, color, images, name, nameEn, price, descriptionEn, description, spec, specEn } = product;
+  console.log('🚀 ~ color:', product)
   console.log('🚀 ~ type:', type, price)
 
   // TODO: Add real breadcrumbs
@@ -39,19 +42,29 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
     { title: "пигмент страсть", link: "/passion-pigment" },
   ];
 
+  const addToBasket = () => {
+    console.log('🚀 ~ addToBasket', productId)
+  }
+
   return (
     <Container>
       <NavigationBreadcrumbs items={breadcrumbItems} />
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full p-5">
-        <div className="w-full md:w-1/2 p-4 mx-auto">
+      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full p-0 md:p-5">
+        <div className="w-full md:w-1/2 p-0 md:p-4 mx-auto">
           <SwiperElementLazy images={images} />
         </div>
         <div className="w-full md:w-1/2 p-4 flex flex-col items-start">
+          <div className="text-base mb-3">{isRus ? name : nameEn}</div>
           <div className="text-lg mb-3">{t("unitPrice", { price })}</div>
-          <div className="mb-5">{t(isRussian ? description : descriptionEn)}</div>
+          <div className="mb-3">{t(isRus ? description : descriptionEn)}</div>
+          <Specs
+            isRus={isRus}
+            spec={isRus ? spec : specEn}
+            t={t}
+          />
           <StyledButton
             text={t('добавить в корзину').toUpperCase()}
-            onClick={() => { }}
+            onClick={addToBasket}
             alternative
           />
         </div>
