@@ -9,13 +9,13 @@ interface Color {
   url: string;
 }
 
-interface Spec {
+export interface Spec {
   country: string;
   desc: string;
   weight: string;
 }
 
-interface Image {
+export interface IImage {
   url: string;
   order: number;
 }
@@ -34,6 +34,6 @@ export interface ProductCardProps {
   descriptionEn: string;
   spec: Spec;
   specEn: Spec;
-  images: Image[];
+  images: IImage[];
 }
 

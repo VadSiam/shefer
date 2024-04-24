@@ -24,8 +24,14 @@
       }
     ],
     "import/prefer-default-export": "off",
-    "no-unused-vars": "warn",
-    "no-console": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "error"
+        ]
+      }
+    ],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
@@ -34,7 +40,13 @@
     "import/no-cycle": "off",
     "max-len": "off",
     "no-nested-ternary": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 2020,

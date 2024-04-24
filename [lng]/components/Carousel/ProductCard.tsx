@@ -17,7 +17,7 @@ interface ProductCartProps {
 const ProductCard = ({ item, lng }: ProductCartProps) => {
   const router = useRouter();
   const { t } = useTranslation(lng, 'mainPage')
-  const isRussian = lng === 'ru';
+  const isRus = lng === 'ru';
   const { id, type, color, images, name, nameEn, price } = item;
 
   const goingProduct = useCallback(() => {
@@ -52,7 +52,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
         />
         <div className="flex flex-col justify-center align-middle text-center px-5 pb-5">
           <div className="text-xl font-semibold tracking-tight mb-2">
-            {t(isRussian ? name : nameEn)}
+            {t(isRus ? name : nameEn)}
           </div>
           <div className="text-l font-semibold tracking-tight mb-2">
             {t(type)}

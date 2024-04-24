@@ -30,5 +30,12 @@
   "Губы": "Lips",
   "Брови": "Eyebrows",
   "Веки": "Eyelids",
-  "Фильтр": "Filter"
+  "Фильтр": "Filter",
+  "добавить в корзину": "add to basket",
+  "идеально в паре": "perfectly in pair",
+  "unitPrice": "{{price}} rub",
+  "Спецификация": "Спецификация",
+  "Страна": "Country",
+  "Описание": "Description",
+  "Вес": "Weight"
 }

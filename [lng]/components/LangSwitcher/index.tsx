@@ -19,11 +19,11 @@ const LangSwitcher = ({ lng }: { lng: string }) => {
       onClick={toggleLang}
       className="flex items-center py-2 md:p-2 cursor-pointer"
     >
-      <span className={`font-semibold ${isRuLanguage ? 'text-gray-900 dark:text-gray-400' : 'text-gray-400 dark:text-gray-700'}`}>
+      <span className={`font-semibold mr-1 ${isRuLanguage ? 'text-gray-900 dark:text-gray-400' : 'text-gray-400 dark:text-gray-700'}`}>
         RUS
       </span>
       /
-      <span className={`font-semibold ${!isRuLanguage ? 'text-gray-900 dark:text-gray-400' : 'text-gray-400 dark:text-gray-700'}`}>
+      <span className={`font-semibold ml-1 ${!isRuLanguage ? 'text-gray-900 dark:text-gray-400' : 'text-gray-400 dark:text-gray-700'}`}>
         ENG
       </span>
     </button>
