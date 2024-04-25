@@ -9,6 +9,7 @@ import LangSwitcher from "../LangSwitcher";
 import AdminButton from "../AdminButton";
 import { useMainContext } from "@/utils/context/main.context";
 import CartButton from "../CartButton";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 const activePassiveNameStyles = (pathname: string, name: string): string => {
   return pathname.includes(name)
@@ -21,7 +22,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
-  const { userData } = useMainContext();
+  const { userData, cartItems } = useMainContext();
 
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
@@ -123,6 +124,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
         </div>
         <div className="flex justify-end md:order-2">
           <AdminButton lng={lng} />
+          <ShoppingCartButton count={cartItems?.length ?? 0} />
           <AuthButton lng={lng} />
           {!isMobileMenuVisible && userData && (
             <CartButton lng={lng} />

@@ -9,6 +9,10 @@ import { Session, User } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic'
 import { ProductCardProps } from '@/[lng]/components/Carousel/types';
 
+export interface ICartItem {
+  id: string;
+  count: number;
+}
 interface ProductsState {
   products: ProductCardProps[];
   isLoading: boolean;
@@ -17,6 +21,8 @@ interface ProductsState {
   resetUserData: () => void;
   afterLogin: () => void;
   getProductById: (_id: string) => ProductCardProps | undefined;
+  cartItems: ICartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<ICartItem[]>>;
 }
 
 // Create the context with a default value
@@ -40,6 +46,8 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = React.useState<ProductCardProps[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
+
+  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
 
   const getProductById = useCallback((_id: string) => {
     return products.find(product => `${product.id}` === _id);
@@ -139,6 +147,8 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     resetUserData,
     afterLogin,
     getProductById,
+    cartItems, 
+    setCartItems,
   };
 
   return (
