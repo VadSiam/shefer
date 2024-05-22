@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic'
 import { ProductCardProps } from '@/[lng]/components/Carousel/types';
 
 export interface ICartItem {
-  id: string;
+  item: ProductCardProps;
   count: number;
 }
 interface ProductsState {
@@ -22,7 +22,7 @@ interface ProductsState {
   afterLogin: () => void;
   getProductById: (_id: string) => ProductCardProps | undefined;
   cartItems: ICartItem[];
-  setCartItems: React.Dispatch<React.SetStateAction<ICartItem[]>>;
+  setCartItemsWithCookies: (_items: ICartItem[]) => void;
 }
 
 // Create the context with a default value
@@ -47,7 +47,12 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
 
-  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const [cartItems, setCartItems] = useState<ICartItem[]>(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') as string) : []);
+
+  const setCartItemsWithCookies = useCallback((items: ICartItem[]) => {
+    setCartItems(items);
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  }, []);
 
   const getProductById = useCallback((_id: string) => {
     return products.find(product => `${product.id}` === _id);
@@ -148,7 +153,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     afterLogin,
     getProductById,
     cartItems, 
-    setCartItems,
+    setCartItemsWithCookies,
   };
 
   return (

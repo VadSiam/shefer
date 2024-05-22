@@ -9,7 +9,7 @@ interface IPopProductsBlock {
   lng: string;
 }
 
-const OPTIONS: ExtendedEmblaOptionsType = {
+export const OPTIONS: ExtendedEmblaOptionsType = {
   dragFree: true,
   loop: true,
   autoplay: true
