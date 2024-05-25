@@ -20,7 +20,7 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   lng,
   id,
 } }) => {
-  const { getProductById, products, setCartItems } = useMainContext();
+  const { getProductById, products, cartItems, setCartItemsWithCookies } = useMainContext();
   const isRus = lng === 'ru';
   const { t } = useTranslation(lng, 'mainPage')
   const [count, setCount] = useState(1);
@@ -50,22 +50,23 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
     { title: "пигмент страсть", link: "/catalog" },
   ];
 
- const addToBasket = () => {
-  setCartItems(state => {
-    const existingItemIndex = state.findIndex(item => item.id === `${productId}`);
+  const addToBasket = () => {
+    const existingItem = cartItems.find(item => item.item?.id === productId);
 
-    if (existingItemIndex !== -1) {
-      return state.map((item, index) => {
-        if (index === existingItemIndex) {
-          return { ...item, count };
-        }
-        return item;
-      });
-    } else {
-      return [...state, { id: `${productId}`, count }];
+    const finallyItems = () => {
+      if (existingItem) {
+        return cartItems.map((item) => {
+          if (item.item.id === existingItem.item.id) {
+            return { ...item, count };
+          }
+          return item;
+        });
+      } else {
+        return [...cartItems, { item: product, count }];
+      }
     }
-  });
-};
+    setCartItemsWithCookies(finallyItems());
+  };
 
   return (
     <Container>

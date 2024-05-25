@@ -38,5 +38,6 @@
   "Страна": "Country",
   "Описание": "Description",
   "Вес": "Weight",
-  "рекомендации для вас": "recommendations for you"
+  "рекомендации для вас": "recommendations for you",
+  "Корзина товара": "Cart {{itemsCount}} items"
 }

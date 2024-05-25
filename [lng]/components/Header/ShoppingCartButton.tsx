@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FC } from 'react';
 
 interface IShoppingCartButton {
@@ -6,7 +7,7 @@ interface IShoppingCartButton {
 
 const ShoppingCartButton: FC<IShoppingCartButton> = ({ count }) => {
   return (
-    <button className="relative rounded">
+    <Link href="/cart" className="relative rounded" >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -36,7 +37,7 @@ const ShoppingCartButton: FC<IShoppingCartButton> = ({ count }) => {
       {!!count && <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none transform translate-x-1/2 -translate-y-1/2 bg-sh-azure rounded-full">
         {count}
       </span>}
-    </button>
+    </Link>
   );
 };
 
