@@ -10,7 +10,6 @@ const CartPage: React.FC<{ params: { lng: string } }> = ({ params: { lng } }) =>
   const { cartItems, products } = useMainContext();
   const { t } = useTranslation(lng, 'cartPage');
 
-  console.log('🚀 ~ items:', cartItems)
   const recommendedProducts = useMemo(() => (products?.slice(0, 4) ?? []), [products]);
 
   const total = cartItems.reduce((acc, item) => acc + (+item.item.price ?? 0) * item.count, 0);

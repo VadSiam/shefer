@@ -2,6 +2,7 @@
   "cSpell.words": [
     "autoplay",
     "bufferutil",
+    "codegen",
     "commentable",
     "Datagrid",
     "embla",
@@ -11,7 +12,10 @@
     "Lightbox",
     "Lngs",
     "Merch",
+    "openapi",
     "shefer",
+    "strapi",
+    "Strapi",
     "supabase",
     "Supabase",
     "swiper",

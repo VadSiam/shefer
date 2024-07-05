@@ -71,13 +71,13 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   return (
     <Container>
       <NavigationBreadcrumbs items={breadcrumbItems} />
-      <h2 className="w-full text-5xl text-left p-6">{isRus ? name.toUpperCase() : nameEn.toUpperCase()}</h2>
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full p-0 md:p-5">
-        <div className="w-full md:w-1/2 p-0 md:p-2 mx-auto">
+      <h2 className="w-full p-6 text-5xl text-left">{isRus ? name.toUpperCase() : nameEn.toUpperCase()}</h2>
+      <div className="flex flex-col w-full p-0 space-y-4 md:flex-row md:space-y-0 md:space-x-4 md:p-5">
+        <div className="w-full p-0 mx-auto md:w-1/2 md:p-2">
           <SwiperElementLazy images={images} />
         </div>
-        <div className="w-full md:w-1/2 p-4 flex flex-col items-start">
-          <div className="text-lg mb-3">{t("unitPrice", { price })}</div>
+        <div className="flex flex-col items-start w-full p-4 md:w-1/2">
+          <div className="mb-3 text-lg">{t("unitPrice", { price })}</div>
           <div className="mb-3">{t(isRus ? description : descriptionEn)}</div>
           <Specs
             spec={isRus ? spec : specEn}
@@ -86,7 +86,7 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
           <div className="flex items-center space-x-2">
             <div className="flex items-center">
               <button
-                className="bg-gray-300 text-gray-800 active:bg-gray-400 font-bold uppercase text-xs p-2 rounded-l shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 dark:bg-gray-600 dark:text-gray-300"
+                className="p-2 text-xs font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-gray-300 rounded-l shadow outline-none active:bg-gray-400 hover:shadow-lg focus:outline-none dark:bg-gray-600 dark:text-gray-300"
                 type="button"
                 onClick={removeItem}
               >
@@ -95,11 +95,11 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
               <input
                 readOnly
                 type="text"
-                className="w-10 text-center bg-gray-300 text-gray-800 font-semibold py-2 rounded shadow inner:border-none dark:bg-gray-600 dark:text-gray-300"
+                className="w-10 py-2 font-semibold text-center text-gray-800 bg-gray-300 rounded shadow inner:border-none dark:bg-gray-600 dark:text-gray-300"
                 value={count}
               />
               <button
-                className="bg-gray-300 text-gray-800 active:bg-gray-400 font-bold uppercase text-xs p-2 rounded-r shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 dark:bg-gray-600 dark:text-gray-300"
+                className="p-2 text-xs font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-gray-300 rounded-r shadow outline-none active:bg-gray-400 hover:shadow-lg focus:outline-none dark:bg-gray-600 dark:text-gray-300"
                 type="button"
                 onClick={addItem}
               >
@@ -114,15 +114,16 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
           </div>
         </div>
       </div>
-      <h2 className="w-full text-5xl text-left p-6">{t('рекомендации для вас').toUpperCase()}</h2>
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full p-0 md:p-5">
-        {products?.slice(0, 4)?.map((product, index) => (
+      <h2 className="w-full p-6 text-5xl text-left">{t('рекомендации для вас').toUpperCase()}</h2>
+      <div className="flex flex-col w-full p-0 space-y-4 md:flex-row md:space-y-0 md:space-x-4 md:p-5">
+        {products?.map((product, index) => (
           <ProductCard
             key={index}
             lng={lng}
             item={product}
           />
-        ))}
+        )
+        )}
       </div>
     </Container>
   )

@@ -22,6 +22,7 @@ interface SwiperElementProps {
 const SwiperElement: React.FC<SwiperElementProps> = ({
   images,
 }) => {
+  console.log('🚀 ~ images:', images)
   const [thumbsSwiper, setThumbsSwiper] = useState<ISwiper | null>(null);
   const sortedImages = useMemo(() => images.sort((a, b) => a.order - b.order), [images]);
 
@@ -55,7 +56,7 @@ const SwiperElement: React.FC<SwiperElementProps> = ({
         {sortedImages.map((image) => (
           <SwiperSlide onClick={() => openModal(image.order)} key={image.order}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${image.url}`}
+              src={image.url}
               alt="Shefer product big size"
               width={500}
               height={300}
@@ -77,7 +78,7 @@ const SwiperElement: React.FC<SwiperElementProps> = ({
         {sortedImages.map((image) => (
           <SwiperSlide key={image.order}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${image.url}`}
+              src={image.url}
               alt="Shefer product"
               width={500}
               height={300}

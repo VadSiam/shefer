@@ -8,6 +8,9 @@ import { useRouter } from 'next/navigation';
 import { Session, User } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic'
 import { ProductCardProps } from '@/[lng]/components/Carousel/types';
+import { fetchProducts } from '../strapi/client';
+import useSWR from 'swr';
+import { Product } from '../strapi/types';
 
 export interface ICartItem {
   item: ProductCardProps;
@@ -25,6 +28,11 @@ interface ProductsState {
   setCartItemsWithCookies: (_items: ICartItem[]) => void;
 }
 
+const fetcher = async () => {
+  const data = await fetchProducts();
+  return data;
+};
+
 // Create the context with a default value
 const ProductsContext = createContext<ProductsState | undefined>(undefined);
 
@@ -40,10 +48,11 @@ export const useMainContext = () => {
 // Define the provider component
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const supabase = createClient();
+  const { data, error, isLoading } = useSWR('/products', fetcher);
 
   const router = useRouter();
 
-  const [products, setProducts] = React.useState<ProductCardProps[]>([]);
+  const [products, setProducts] = React.useState<Product[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
 
@@ -55,8 +64,20 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const getProductById = useCallback((_id: string) => {
-    return products.find(product => `${product.id}` === _id);
+    return products?.find(product => `${product.id}` === _id);
   }, [products]);
+
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      displayError({ message: 'An unexpected error occurred while fetching the Product data.' });
+    }
+  }, [error]);
 
   const resetUserData = useCallback(async () => {
     await supabase.auth.signOut()
@@ -119,7 +140,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
           throw new Error(error.message); // re-throw the error to catch it in the onError hook
         }
         const convertedData = convertItems(data);
-        setProducts(convertedData)
+        // setProducts(convertedData)
         return convertedData;
       } catch (error: any) {
         // Handle any unexpected errors
@@ -132,27 +153,27 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
 
   const afterLogin = useCallback(() => {
     sessionQuery.refetch();
-    userQuery.refetch();
+    // userQuery.refetch();
     router.push('/');
   }, [sessionQuery, userQuery, router]);
 
 
   useEffect(() => {
     productsQuery.refetch();
-    userQuery.refetch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // userQuery.refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Provide the products and loading state directly from the query object
   const value = {
     products,
-    isLoading: productsQuery.isLoading || sessionQuery.isLoading || userQuery.isLoading,
+    isLoading: isLoading || productsQuery.isLoading || sessionQuery.isLoading || userQuery.isLoading,
     sessionData,
     userData,
     resetUserData,
     afterLogin,
     getProductById,
-    cartItems, 
+    cartItems,
     setCartItemsWithCookies,
   };
 

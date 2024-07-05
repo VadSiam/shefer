@@ -15,6 +15,7 @@ interface ProductCartProps {
 }
 
 const ProductCard = ({ item, lng }: ProductCartProps) => {
+  console.log('🚀 ~ item:', item)
   const router = useRouter();
   const { t } = useTranslation(lng, 'mainPage')
   const isRus = lng === 'ru';
@@ -32,7 +33,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
       >
         {color && <Image
           alt="Shefer pigments"
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${color.url}`}
+          src={color.url}
           quality={100}
           fill
           sizes="(max-width: 768px) 100vw, 100vw"
@@ -43,18 +44,18 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
           className=' -z-10'
         />}
         <Image
-          className="embla__slide__img p-6"
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${images?.[0]?.url}`}
+          className="p-6 embla__slide__img"
+          src={images?.[0]?.url}
           alt="Product"
           width={200}
           height={100}
           priority={true}
         />
-        <div className="flex flex-col justify-center align-middle text-center px-5 pb-5">
-          <div className="text-xl font-semibold tracking-tight mb-2">
+        <div className="flex flex-col justify-center px-5 pb-5 text-center align-middle">
+          <div className="mb-2 text-xl font-semibold tracking-tight">
             {t(isRus ? name : nameEn)}
           </div>
-          <div className="text-l font-semibold tracking-tight mb-2">
+          <div className="mb-2 font-semibold tracking-tight text-l">
             {t(type)}
           </div>
           <div className="flex items-center justify-center">
