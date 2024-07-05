@@ -11,10 +11,9 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, count, lng }) => {
-  console.log('🚀 ~ item:', item)
   const image = item?.images.find(image => image.order === 1);
   return (
-    <div className="flex md:flex-col flex-row justify-between items-center py-2">
+    <div className="flex flex-row items-center justify-between py-2 md:flex-col">
       <div className="flex items-center">
         <ProductCard item={item} lng={lng} />
       </div>
