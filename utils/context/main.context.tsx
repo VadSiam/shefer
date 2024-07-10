@@ -7,23 +7,22 @@ import { convertItems, displayError } from '../helpers';
 import { useRouter } from 'next/navigation';
 import { Session, User } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic'
-import { ProductCardProps } from '@/[lng]/components/Carousel/types';
 import { fetchProducts } from '../strapi/client';
 import useSWR from 'swr';
-import { Product } from '../strapi/types';
+import { TransformedProduct } from '../strapi/types';
 
 export interface ICartItem {
-  item: ProductCardProps;
+  item: TransformedProduct;
   count: number;
 }
 interface ProductsState {
-  products: ProductCardProps[];
+  products: TransformedProduct[];
   isLoading: boolean;
   sessionData: Session | null;
   userData: User | null;
   resetUserData: () => void;
   afterLogin: () => void;
-  getProductById: (_id: string) => ProductCardProps | undefined;
+  getProductById: (_id: string) => TransformedProduct | undefined;
   cartItems: ICartItem[];
   setCartItemsWithCookies: (_items: ICartItem[]) => void;
 }
@@ -52,7 +51,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
 
   const router = useRouter();
 
-  const [products, setProducts] = React.useState<Product[]>([]);
+  const [products, setProducts] = React.useState<TransformedProduct[]>([]);
   const [sessionData, setSessionData] = useState<any>(null);
   const [userData, setUserData] = useState<User | null>(null);
 

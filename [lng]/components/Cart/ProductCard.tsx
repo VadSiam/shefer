@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 // import { isMobile } from 'react-device-detect';
 import { useTranslation } from '@/app/i18n/client';
-import { ProductCardProps } from '../Carousel/types';
+import { TransformedProduct } from '@/utils/strapi/types';
 // import StyledButton from '../ThemesComponents/StyledButton';
 
 
 interface ProductCartProps {
-  item: ProductCardProps;
+  item: TransformedProduct;
   lng: string;
 }
 
@@ -26,7 +26,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
       >
         {color && <Image
           alt="Shefer pigments"
-          src={color.url}
+          src={color}
           quality={100}
           fill
           sizes="(max-width: 768px) 100vw, 100vw"

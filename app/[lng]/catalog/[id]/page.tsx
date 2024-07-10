@@ -12,6 +12,7 @@ import { ProductCardProps } from "@/[lng]/components/Carousel/types";
 import Specs from "./Specs";
 import ProductCard from "@/[lng]/components/Carousel/ProductCard";
 import { useState } from "react";
+import { TransformedProduct } from "@/utils/strapi/types";
 
 const SwiperElementLazy = dynamic(() => import('@/[lng]/components/SwiperElement'), { ssr: false });
 
@@ -34,7 +35,7 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   }
 
   const cleanedId = cleanupId(id);
-  const product: ProductCardProps | undefined = getProductById(cleanedId);
+  const product: TransformedProduct | undefined = getProductById(cleanedId);
 
   if (!cleanedId || !product) {
     return <div>No such product</div>

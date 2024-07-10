@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
-import { ProductCardProps } from '../Carousel/types';
 import ProductCard from './ProductCard';
+import { TransformedProduct } from '@/utils/strapi/types';
 
 interface CartItemProps {
-  item: ProductCardProps
+  item: TransformedProduct
   count: number;
   lng: string;
 }

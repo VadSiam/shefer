@@ -1,12 +1,12 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
-import { ProductCardProps } from '../Carousel/types';
 import EmblaCarousel from '../Carousel';
 import { ExtendedEmblaOptionsType } from '@/app/[lng]/page';
+import { TransformedProduct } from '@/utils/strapi/types';
 
 interface RecommendedProductsProps {
-  products: ProductCardProps[];
+  products: TransformedProduct[];
   lng: string;
 }
 

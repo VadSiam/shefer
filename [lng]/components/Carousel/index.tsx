@@ -10,10 +10,10 @@ import {
 } from './EmblaCarouselArrowButtons'
 import ProductCard from './ProductCard'
 import { ExtendedEmblaOptionsType } from '@/app/[lng]/page'
-import { ProductCardProps } from './types'
+import { TransformedProduct } from '@/utils/strapi/types'
 
 type IEmblaCarousel = {
-  slides: ProductCardProps[]
+  slides: TransformedProduct[]
   options?: ExtendedEmblaOptionsType
   lng: string
 }
