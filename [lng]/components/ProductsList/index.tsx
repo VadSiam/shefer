@@ -20,7 +20,7 @@ const ProductsList: React.FC<{ lng: string, filter: filterTypes }> = ({
 
   return (
     <div
-      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4"
+      className="grid grid-cols-2 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4"
     >
       {filteredProducts?.map((product, index) => (
         <ProductCard
