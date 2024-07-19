@@ -14,8 +14,8 @@ const PartnerBlock: React.FC<IPartner> = ({ lng }) => {
   return (
     <div className="flex flex-col items-center justify-center bg-inherit my-36">
       <div className="p-8 bg-inherit">
-        <h2 className="text-5xl font-bold text-center mb-6">{t('хотите стать нашим партнером?').toUpperCase()}</h2>
-        <p className="text-center mb-8">{t('Оставьте свои контакты и мы обязательно с вами свяжемся.')}</p>
+        <h2 className="mb-6 text-5xl font-bold text-center">{t('хотите стать нашим партнером?').toUpperCase()}</h2>
+        <p className="mb-8 text-center">{t('Оставьте свои контакты и мы обязательно с вами свяжемся.')}</p>
         <div className="space-y-4 text-center">
           <div>
             <input
@@ -45,11 +45,11 @@ const PartnerBlock: React.FC<IPartner> = ({ lng }) => {
             />
           </div>
           <div
-          className='text-xs'
+            className='text-xs'
           >{t('Нажимая «отправить», вы принимаете условия публичной оферты.')}</div>
           <StyledButton
             text={t('отправить').toUpperCase()}
-            onClick={() => {}}
+            onClick={() => { }}
             alternative
           />
         </div>

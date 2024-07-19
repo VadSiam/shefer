@@ -39,5 +39,14 @@
   "Описание": "Description",
   "Вес": "Weight",
   "рекомендации для вас": "recommendations for you",
-  "Корзина товара": "Cart {{itemsCount}} items"
+  "Корзина товара": "Cart {{itemsCount}} items",
+  "Оформление заказа": "Ordering",
+  "ваш заказ": "your order",
+  "Товаров в заказе": "Items in order",
+  "доставка": "delivery",
+  "цена": "price",
+  "итого": "total",
+  "оплатить": "pay",
+  "сумма товаров": "total items",
+  "доставка до": "delivery to {{data}}"
 }

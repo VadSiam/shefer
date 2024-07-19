@@ -14,7 +14,6 @@ const strapi = new Strapi({
 });
 
 const transformProduct = (product: Product): TransformedProduct => {
-  console.log('🚀 ~ product:', product)
   const transformDescription = (desc: Description[]): string =>
     desc.map((d) => d.children.map((child) => child.text).join('')).join('');
 
