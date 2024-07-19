@@ -12,18 +12,19 @@ const CartPage: React.FC<{ params: { lng: string } }> = ({ params: { lng } }) =>
 
   const recommendedProducts = useMemo(() => (products?.slice(0, 4) ?? []), [products]);
 
-  const total = cartItems.reduce((acc, item) => acc + (+item.item.price ?? 0) * item.count, 0);
+  const total = (cartItems.reduce((acc, item) => acc + (+item.item.price ?? 0) * item.count, 0) || 0).toFixed(2);
+  const itemsCount = cartItems?.length;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{t('Корзина товара', { itemsCount: cartItems?.length }).toUpperCase()}</h1>
-      <div className="flex flex-row">
+    <div className="w-full p-4">
+      <h1 className="text-2xl font-bold">{t('Корзина товара', { itemsCount }).toUpperCase()}</h1>
+      <div className="flex flex-col md:flex-row">
         {cartItems.map((item, index) => (
           <CartItem key={index} item={item.item} count={item.count} lng={lng} />
         ))}
       </div>
-      <CartSummary total={total} />
-      <RecommendedProducts products={recommendedProducts} lng={lng} />
+      <CartSummary total={total} t={t} itemsCount={itemsCount} />
+      {/* <RecommendedProducts products={recommendedProducts} lng={lng} /> */}
     </div>
   );
 };
