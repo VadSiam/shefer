@@ -1,14 +1,15 @@
 interface StyledButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   customClassName?: string;
   textButton?: boolean;
   alternative?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 const StyledButton = (props: StyledButtonProps) => {
-  const { text, onClick, disabled, customClassName, textButton, alternative } = props;
+  const { text, onClick, disabled, customClassName, textButton, alternative, type } = props;
 
   // Conditional classes for the text-style button
   const buttonStyleClasses = textButton
@@ -24,6 +25,7 @@ const StyledButton = (props: StyledButtonProps) => {
       className={buttonClasses}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {text}
     </button>

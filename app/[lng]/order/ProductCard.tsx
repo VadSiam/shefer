@@ -14,7 +14,7 @@ interface ProductCartProps {
 const ProductCard = ({ item, lng }: ProductCartProps) => {
   const { t } = useTranslation(lng, 'mainPage')
   const isRus = lng === 'ru';
-  const { id, type, color, images, name, nameEn, price } = item?.item as TransformedProduct || {};
+  const { images, name, nameEn, } = item?.item as TransformedProduct || {};
 
   return (
     <div className="">

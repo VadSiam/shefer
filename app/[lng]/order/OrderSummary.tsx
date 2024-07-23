@@ -5,15 +5,6 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import StyledButton from '@/[lng]/components/ThemesComponents/StyledButton';
 
-interface OrderItem {
-  name: string;
-  image: string;
-}
-
-const orderItems: OrderItem[] = [
-  { name: 'страсть', image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/676642c172eae43ed0b1d567739acf767b81514a7209bc3dbfeb1d48f8b068ad?apiKey=2fbb07f07d034bf4bcd098d0ff179fa1&' },
-  { name: 'морозный беж', image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/676642c172eae43ed0b1d567739acf767b81514a7209bc3dbfeb1d48f8b068ad?apiKey=2fbb07f07d034bf4bcd098d0ff179fa1&' },
-];
 
 interface OrderSummaryProps {
   cartItems: ICartItem[]

@@ -1,16 +1,16 @@
 'use client'
 import CartItem from '@/[lng]/components/Cart/CartItem';
 import CartSummary from '@/[lng]/components/Cart/CartSummary';
-import RecommendedProducts from '@/[lng]/components/Cart/RecomendedProducts';
+// import RecommendedProducts from '@/[lng]/components/Cart/RecommendedProducts';
 import { useTranslation } from '@/app/i18n/client';
 import { useMainContext } from '@/utils/context/main.context';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 const CartPage: React.FC<{ params: { lng: string } }> = ({ params: { lng } }) => {
-  const { cartItems, products } = useMainContext();
+  const { cartItems } = useMainContext();
   const { t } = useTranslation(lng, 'cartPage');
 
-  const recommendedProducts = useMemo(() => (products?.slice(0, 4) ?? []), [products]);
+  // const recommendedProducts = useMemo(() => (products?.slice(0, 4) ?? []), [products]); // TODO add recommended products in future
 
   const total = (cartItems.reduce((acc, item) => acc + (+item.item.price ?? 0) * item.count, 0) || 0).toFixed(2);
   const itemsCount = cartItems?.map(item => item.count).reduce((acc, count) => acc + count, 0) ?? 0;
