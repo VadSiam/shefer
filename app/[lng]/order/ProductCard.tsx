@@ -1,8 +1,6 @@
 'use client'
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
 import { useTranslation } from '@/app/i18n/client';
 import { TransformedProduct } from '@/utils/strapi/types';
 import { ICartItem } from '@/utils/context/main.context';
@@ -17,7 +15,6 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
   const { t } = useTranslation(lng, 'mainPage')
   const isRus = lng === 'ru';
   const { id, type, color, images, name, nameEn, price } = item?.item as TransformedProduct || {};
-  console.log('🚀 ~ item:', item)
 
   return (
     <div className="">

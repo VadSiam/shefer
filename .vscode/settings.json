@@ -1,4 +1,18 @@
 {
+  "eslint.useESLintClass": false,
+  "eslint.trace.server": "verbose",
+  "eslint.enable": true,
+  "eslint.nodePath": "node_modules",
+  "editor.tabSize": 2,
+  "prettier.tabWidth": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "autoplay",
     "bufferutil",
