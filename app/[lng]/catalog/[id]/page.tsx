@@ -13,6 +13,7 @@ import Specs from "./Specs";
 import ProductCard from "@/[lng]/components/Carousel/ProductCard";
 import { useState } from "react";
 import { TransformedProduct } from "@/utils/strapi/types";
+import Toast from "@/[lng]/components/Toast";
 
 const SwiperElementLazy = dynamic(() => import('@/[lng]/components/SwiperElement'), { ssr: false });
 
@@ -25,6 +26,8 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   const isRus = lng === 'ru';
   const { t } = useTranslation(lng, 'mainPage')
   const [count, setCount] = useState(1);
+  const [toastShow, setToastShow] = useState(false);
+  const closeToast = () => setToastShow(false);
 
   const addItem = () => {
     setCount(state => state + 1);
@@ -67,10 +70,12 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
       }
     }
     setCartItemsWithCookies(finallyItems());
+    setToastShow(true);
   };
 
   return (
     <Container>
+      {toastShow && <Toast message={t("Товар добавлен")} onClose={closeToast} />}
       <NavigationBreadcrumbs items={breadcrumbItems} />
       <h2 className="w-full p-6 text-5xl text-left">{isRus ? name.toUpperCase() : nameEn.toUpperCase()}</h2>
       <div className="flex flex-col w-full p-0 space-y-4 md:flex-row md:space-y-0 md:space-x-4 md:p-5">
