@@ -32,6 +32,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ total, t, itemsCount }) => {
           text={t('Перейти к оформлению').toUpperCase()}
           onClick={goingToOrder}
           alternative
+          disabled={!itemsCount}
         />
       </div>
     </>

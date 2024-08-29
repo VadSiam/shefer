@@ -1,9 +1,9 @@
 'use client'
+import React, { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import AuthButton, { LogoutButton } from "../AuthButton";
 import ThemeSwitcher from "../ThemeSwitcher";
 import LogoImage from "./LogoImage";
-import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "@/app/i18n/client";
 import LangSwitcher from "../LangSwitcher";
 import AdminButton from "../AdminButton";
@@ -17,9 +17,7 @@ const activePassiveNameStyles = (pathname: string, name: string): string => {
     : ' text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
 }
 
-
-const Header: React.FC<{ lng: string }> = ({ lng }) => {
-
+const Header: React.FC<{ lng: string }> = React.memo(({ lng }) => {
   const { t } = useTranslation(lng, 'header')
   const pathname = usePathname();
   const { userData, cartItems } = useMainContext();
@@ -62,16 +60,16 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
 
   return (
     <nav className={`h-22 fixed w-full z-20 top-0 left-0 border-b border-foreground-black dark:border-foreground-white transition-transform duration-1000 ${isHeaderCollapsed ? '-translate-y-full' : 'translate-y-0'}`}>
-      <div className="uppercase max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-6 mx-auto uppercase">
         <a href="/" className="flex items-center">
           <LogoImage />
         </a>
         <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isMobileMenuVisible ? 'block' : 'hidden'}`}
           id="navbar-sticky"
         >
-          <ul className="flex w-screen absolute left-0 -top-4 h-screen md:static md:h-auto md:w-auto flex-col p-4 md:p-0 mt-4 font-medium bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-background dark:bg-black md:dark:bg-background dark:border-gray-700">
+          <ul className="absolute left-0 flex flex-col w-screen h-screen p-4 mt-4 font-medium -top-4 md:static md:h-auto md:w-auto md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-background dark:bg-black md:dark:bg-background dark:border-gray-700">
             <li
-              className="md:hidden flex flex-col justify-center items-end mb-2"
+              className="flex flex-col items-end justify-center mb-2 md:hidden"
               onClick={toggleMenu}
             >
               <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +101,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
                 {t('Контакты')}
               </a>
             </li>
-            {userData && <li className="flex md:hidden flex-col justify-center">
+            {userData && <li className="flex flex-col justify-center md:hidden">
               <a
                 href={`/${lng}/account`}
                 className={`block py-2 pl-3 pr-4 ${activePassiveNameStyles(pathname, 'account')}`}
@@ -133,7 +131,7 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
             onClick={toggleMenu}
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="ml-2 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center justify-center w-10 h-10 p-2 ml-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
@@ -149,6 +147,8 @@ const Header: React.FC<{ lng: string }> = ({ lng }) => {
       </div>
     </nav>
   )
-}
+});
+
+Header.displayName = 'Header';
 
 export default Header;

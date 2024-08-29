@@ -28,7 +28,7 @@ const NavigationBreadcrumbs: React.FC<NavigationProps> = ({ items }) => {
       </nav>
       <nav className="sm:flex hidden gap-5 self-start mt-4 mb-4 text-xs text-center uppercase max-md:mt-10 max-md:ml-2.5">
         {items.map((item, index) => (
-          <React.Fragment key={item.link}>
+          <React.Fragment key={index}>
             <Link className="" href={item.link}>{item.title}</Link>
             {index < items.length - 1 && <Separator />}
           </React.Fragment>

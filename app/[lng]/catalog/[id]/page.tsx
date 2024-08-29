@@ -8,34 +8,34 @@ import { useMainContext } from "@/utils/context/main.context";
 import { cleanupId } from "@/utils/helpers";
 import dynamic from "next/dynamic";
 import * as React from "react";
-import { ProductCardProps } from "@/[lng]/components/Carousel/types";
 import Specs from "./Specs";
 import ProductCard from "@/[lng]/components/Carousel/ProductCard";
-import { useState } from "react";
+import { memo, useState, useCallback } from "react";
 import { TransformedProduct } from "@/utils/strapi/types";
 import Toast from "@/[lng]/components/Toast";
 
 const SwiperElementLazy = dynamic(() => import('@/[lng]/components/SwiperElement'), { ssr: false });
 
+interface ItemPageProps {
+  params: { lng: string; id: string };
+}
 
-const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
-  lng,
-  id,
-} }) => {
+const ItemPage: React.FC<ItemPageProps> = memo(({ params: { lng, id } }) => {
   const { getProductById, products, cartItems, setCartItemsWithCookies } = useMainContext();
   const isRus = lng === 'ru';
   const { t } = useTranslation(lng, 'mainPage')
   const [count, setCount] = useState(1);
   const [toastShow, setToastShow] = useState(false);
-  const closeToast = () => setToastShow(false);
 
-  const addItem = () => {
+  const closeToast = useCallback(() => setToastShow(false), []);
+
+  const addItem = useCallback(() => {
     setCount(state => state + 1);
-  }
+  }, []);
 
-  const removeItem = () => {
+  const removeItem = useCallback(() => {
     setCount(state => (state > 1 ? state - 1 : 1))
-  }
+  }, []);
 
   const cleanedId = cleanupId(id);
   const product: TransformedProduct | undefined = getProductById(cleanedId);
@@ -57,19 +57,11 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
   const addToBasket = () => {
     const existingItem = cartItems.find(item => item.item?.id === productId);
 
-    const finallyItems = () => {
-      if (existingItem) {
-        return cartItems.map((item) => {
-          if (item.item.id === existingItem.item.id) {
-            return { ...item, count };
-          }
-          return item;
-        });
-      } else {
-        return [...cartItems, { item: product, count }];
-      }
-    }
-    setCartItemsWithCookies(finallyItems());
+    const finallyItems = existingItem
+      ? cartItems.map((item) => item.item.id === existingItem.item.id ? { ...item, count } : item)
+      : [...cartItems, { item: product, count }];
+
+    setCartItemsWithCookies(finallyItems);
     setToastShow(true);
   };
 
@@ -85,10 +77,7 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
         <div className="flex flex-col items-start w-full p-4 md:w-1/2">
           <div className="mb-3 text-lg">{t("unitPrice", { price })}</div>
           <div className="mb-3">{t(isRus ? description : descriptionEn)}</div>
-          <Specs
-            spec={isRus ? spec : specEn}
-            t={t}
-          />
+          <Specs spec={isRus ? spec : specEn} t={t} />
           <div className="flex items-center space-x-2">
             <div className="flex items-center">
               <button
@@ -123,17 +112,13 @@ const ItemPage: React.FC<{ params: { lng: string, id: string } }> = ({ params: {
       <h2 className="w-full p-6 text-5xl text-left">{t('рекомендации для вас').toUpperCase()}</h2>
       <div className="flex flex-col w-full p-0 space-y-4 md:flex-row md:space-y-0 md:space-x-4 md:p-5">
         {products?.map((product, index) => (
-          <ProductCard
-            key={index}
-            lng={lng}
-            item={product}
-          />
-        )
-        )}
+          <ProductCard key={index} lng={lng} item={product} />
+        ))}
       </div>
     </Container>
   )
-}
+});
 
+ItemPage.displayName = 'ItemPage';
 
-export default ItemPage
+export default ItemPage;

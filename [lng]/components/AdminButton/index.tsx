@@ -1,4 +1,5 @@
 'use client'
+import React, { memo } from 'react'
 import { useMainContext } from '@/utils/context/main.context'
 import { useTranslation } from '@/app/i18n/client'
 import { isAdminCheck } from '@/utils/helpers'
@@ -7,7 +8,7 @@ interface IAdmin {
   lng: string
 }
 
-const AdminButton: React.FC<IAdmin> = ({ lng }) => {
+const AdminButton: React.FC<IAdmin> = memo(({ lng }) => {
   const { userData } = useMainContext();
   const { t } = useTranslation(lng, 'header')
   const isAdmin = isAdminCheck(userData);
@@ -27,6 +28,8 @@ const AdminButton: React.FC<IAdmin> = ({ lng }) => {
       </button>
     </a>
   )
-}
+});
 
-export default AdminButton
+AdminButton.displayName = 'AdminButton';
+
+export default AdminButton;

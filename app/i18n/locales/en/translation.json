@@ -51,5 +51,6 @@
   "сумма товаров": "total items",
   "доставка до": "delivery to {{data}}",
   "шт.": "pcs.",
-  "Товар добавлен": "Item added"
+  "Товар добавлен": "Item added",
+  "Сбросить корзину": "Reset cart"
 }
