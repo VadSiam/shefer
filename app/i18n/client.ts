@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import i18next from 'i18next'
 import { initReactI18next, useTranslation as useTranslationOrg } from 'react-i18next'
 import { useCookies } from 'react-cookie'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { getOptions, languages, cookieName } from './settings'
+import { SettingsContext } from '@/utils/context/SettingsProvider'
 
 const runsOnServerSide = typeof window === 'undefined'
 
@@ -25,6 +26,8 @@ i18next
   })
 
 export function useTranslation(lng: string, ns: string, options?: { keyPrefix?: string }) {
+  // const { lang: lng } = useContext(SettingsContext);
+  console.log('🚀 ~ lng:', lng)
   const [cookies, setCookie] = useCookies([cookieName])
   const ret = useTranslationOrg(ns, options)
   const { i18n } = ret

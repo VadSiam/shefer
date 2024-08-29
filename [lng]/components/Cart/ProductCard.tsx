@@ -1,20 +1,16 @@
 'use client'
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
-// import { isMobile } from 'react-device-detect';
+import { memo } from 'react';
 import { useTranslation } from '@/app/i18n/client';
 import { TransformedProduct } from '@/utils/strapi/types';
-// import StyledButton from '../ThemesComponents/StyledButton';
-
 
 interface ProductCartProps {
   item: TransformedProduct;
   lng: string;
 }
 
-const ProductCard = ({ item, lng }: ProductCartProps) => {
+const ProductCard = memo(({ item, lng }: ProductCartProps) => {
   const { t } = useTranslation(lng, 'mainPage')
   const isRus = lng === 'ru';
   const { id, type, color, images, name, nameEn, price } = item;
@@ -32,7 +28,7 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
           sizes="(max-width: 768px) 100vw, 100vw"
           style={{
             objectFit: 'contain',
-            scale: 1.5,
+            scale: 1.01,
           }}
           className=' -z-10'
         />}
@@ -55,17 +51,13 @@ const ProductCard = ({ item, lng }: ProductCartProps) => {
             <span className="text-3xl font-bold">
               {price}
             </span>
-            {/* {isMobile  && <StyledButton
-              text={t('смотреть').toUpperCase()}
-              onClick={goingProduct}
-              alternative
-            />} */}
           </div>
         </div>
       </div>
     </div>
-
   );
-};
+});
+
+ProductCard.displayName = 'ProductCard';
 
 export default ProductCard;

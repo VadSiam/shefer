@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import Image from 'next/image';
 import EmblaCarousel from '../Carousel';
 import { ExtendedEmblaOptionsType } from '@/app/[lng]/page';
 import { TransformedProduct } from '@/utils/strapi/types';

@@ -25,6 +25,7 @@ interface ProductsState {
   getProductById: (_id: string) => TransformedProduct | undefined;
   cartItems: ICartItem[];
   setCartItemsWithCookies: (_items: ICartItem[]) => void;
+  resetCart: () => void;
 }
 
 const fetcher = async () => {
@@ -60,6 +61,11 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const setCartItemsWithCookies = useCallback((items: ICartItem[]) => {
     setCartItems(items);
     localStorage.setItem('cartItems', JSON.stringify(items));
+  }, []);
+
+  const resetCart = useCallback(() => {
+    setCartItems([]);
+    localStorage.removeItem('cartItems');
   }, []);
 
   const getProductById = useCallback((_id: string) => {
@@ -154,7 +160,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     sessionQuery.refetch();
     // userQuery.refetch();
     router.push('/');
-  }, [sessionQuery, userQuery, router]);
+  }, [sessionQuery, router]);
 
 
   useEffect(() => {
@@ -174,6 +180,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     getProductById,
     cartItems,
     setCartItemsWithCookies,
+    resetCart,
   };
 
   return (

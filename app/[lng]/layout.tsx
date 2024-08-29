@@ -9,6 +9,7 @@ import Footer from '@/[lng]/components/Footer'
 import { Suspense } from 'react'
 import LoaderBody from '@/[lng]/components/Loader/LoaderBody'
 import { Arsenal } from 'next/font/google'
+import SettingsProvider, { ELang } from '@/utils/context/SettingsProvider'
 
 
 export async function generateStaticParams() {
@@ -38,7 +39,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode,
   params: {
-    lng: string
+    lng: ELang
   }
 }) {
 
@@ -46,18 +47,20 @@ export default function RootLayout({
   return (
     <html lang={lng} dir={dir(lng)} className={arsenal.className}>
       <body className="bg-background-white text-foreground-dark-gray dark:bg-background dark:text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          <QueryClientProviderWrapper>
-            <Header lng={lng} />
-            <Loader />
-            <Toaster position="top-center" reverseOrder={false} />
-            <div className="flex-1 w-full flex flex-col gap-2 items-center mt-22 md:mt-22">
-              <Suspense fallback={<LoaderBody />}>
-                {children}
-              </Suspense>
-            </div>
-            <Footer lng={lng} />
-          </QueryClientProviderWrapper>
+        <main className="flex flex-col items-center min-h-screen">
+          <SettingsProvider lng={lng}>
+            <QueryClientProviderWrapper>
+              <Header lng={lng} />
+              <Loader />
+              <Toaster position="top-center" reverseOrder={false} />
+              <div className="flex flex-col items-center flex-1 w-full gap-2 mt-22 md:mt-22">
+                <Suspense fallback={<LoaderBody />}>
+                  {children}
+                </Suspense>
+              </div>
+              <Footer lng={lng} />
+            </QueryClientProviderWrapper>
+          </SettingsProvider>
         </main>
       </body>
     </html>

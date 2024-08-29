@@ -1,15 +1,14 @@
 'use client'
 
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useMainContext } from '@/utils/context/main.context'
 import StyledLink from './ThemesComponents/StyledLink'
 import { IPageElementProps } from '@/app/[lng]/page'
 import { useTranslation } from '@/app/i18n/client'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getRandomNumber } from '@/utils/helpers'
 
-
-const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
+const AuthButton: React.FC<IPageElementProps> = React.memo(({ lng }) => {
   const { userData } = useMainContext();
   const { t } = useTranslation(lng, 'header')
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -22,16 +21,12 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
 
   const randomNumber = useMemo(() => getRandomNumber(1, 16), []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // @ts-ignore
-      if (buttonRef?.current?.contains?.(event.target)) {
-        // Clicked the button, ignore
+      if (buttonRef?.current && (buttonRef.current as HTMLElement).contains(event.target as Node)) {
         return;
       }
-      // @ts-ignore
-      if (dropdownRef.current && !dropdownRef?.current?.contains(event.target)) {
+      if (dropdownRef.current && !(dropdownRef.current as HTMLElement).contains(event.target as Node)) {
         setDropdownOpen(false);
       }
     };
@@ -42,11 +37,10 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
     };
   }, []);
 
-
   return (
     <>
       {userData ? (
-        <div className="items-center gap-4 hidden md:flex">
+        <div className="items-center hidden gap-4 md:flex">
           <div className="items-center space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               ref={buttonRef}
@@ -72,7 +66,7 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
-                  <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{userData?.email}</span>
+                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{userData?.email}</span>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
@@ -98,22 +92,24 @@ const AuthButton: React.FC<IPageElementProps> = ({ lng }) => {
       )}
     </>
   )
-}
+});
 
-export default AuthButton
+AuthButton.displayName = 'AuthButton';
+
+export default AuthButton;
 
 interface ILogout extends IPageElementProps {
   action?: () => void
 }
 
-export const LogoutButton: React.FC<ILogout> = ({ lng, action }) => {
+export const LogoutButton: React.FC<ILogout> = React.memo(({ lng, action }) => {
   const { resetUserData } = useMainContext();
   const { t } = useTranslation(lng, 'header')
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     action?.()
     resetUserData()
-  }
+  }, [action, resetUserData]);
 
   return (
     <div
@@ -122,4 +118,6 @@ export const LogoutButton: React.FC<ILogout> = ({ lng, action }) => {
       {t('ВЫЙТИ')}
     </div>
   )
-}
+});
+
+LogoutButton.displayName = 'LogoutButton';
